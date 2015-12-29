@@ -1,44 +1,55 @@
 body { 
-    padding-top: 84px;
+    padding-top: 93px;
     padding-bottom: 20px;
 }
 
-    .navbar .container {
-        height: 84px;
-    }
+/* HEADER */
+.header {
+    height: 93px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
 
-    .navbar-brand:hover {
-        color: #9d9d9d !important;
-    }
+.navbar-brand {
+    font-size: 36px;
+    margin-top: 24px;
+}
 
-    .navbar-header a {
-        font-size: 36px;
-        margin: 24px 0;
-    }
+.navbar-brand:hover {
+    color: #9d9d9d !important;
+}
 
-    .navbar-right li {
-        font-size: 16px;
-        padding: 24px 0;
+    .nav li {
+        padding-top: 24px;
         margin: 0;
     }
 
-    nav .navbar-right > ul > li > a:hover {
-        color: #f46151 !important;
+    .nav li a {
+        font-size: 16px !important;
+        color: #9d9d9d !important;
     }
 
+    nav .nav a:hover {
+        color: #f46151 !important;
+        background-color: #444 !important;
+    }
+
+
+/* FOOTER */
 footer {
+    background-color: #222 !important;
     margin-top: 36px;
 }
 
     footer .container {
-        background-color: #333538;
         width: 100%;
         margin: 0;
     }
     
         footer .container h4 {
             margin-top: 36px;
-            color: #5c5d60;
+            color: #9d9d9d;
             font-size: 16px;
             text-transform: uppercase;
         }

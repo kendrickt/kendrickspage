@@ -19,22 +19,18 @@
 
 <body>
     <!-- HEADER -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href='{{ url_for("index")}}'>Kendrick Tang</a>
-            </div> <!-- end navbar-header -->
+    <div class="container header clearfix navbar-fixed-top navbar navbar-inverse">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li><a role="presentation" href='{{ url_for("index")}}'>Home</a></li>
+                <li><a role="presentation" href='{{ url_for("projects")}}'>Projects</a></li>
+                <li><a role="presentation" href='{{ url_for("about")}}'>About</a></li>
+            </ul>
+        </nav>
 
-                <!-- NAVIGATION -->
-            <div id="navbar" class="navbar-right">
-                <ul class="nav navbar-nav">
-                    <li><a href='{{ url_for("index")}}'>Home</a></li>
-                    <li><a href='{{ url_for("projects")}}'>Projects</a></li>
-                    <li><a href='{{ url_for("about")}}'>About</a></li>
-                </ul>
-            </div> <!-- end navbar-right -->
-        </div> <!-- end container -->
-    </nav>
+        <!-- LOGO -->
+        <a class="navbar-brand" href='{{ url_for("index")}}'>Kendrick Tang</a>
+    </div> <!-- end container header clearfix -->
 
     {% block content %}{% endblock %} 
 
