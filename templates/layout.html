@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Kendrick's website">
+    <meta name="author" content="Kendrick Tang">
+
+    <title>Kendrick Tang</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href='{{ url_for('static', filename="bootstrap/css/bootstrap.min.css") }}' rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href='{{ url_for("static", filename="css/style.css")}}' rel="stylesheet">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href='{{ url_for("index")}}'>Kendrick Tang</a>
+            </div> <!-- end navbar-header -->
+
+                <!-- NAVIGATION -->
+            <div id="navbar" class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href='{{ url_for("index")}}'>Home</a></li>
+                    <li><a href='{{ url_for("projects")}}'>Projects</a></li>
+                    <li><a href='{{ url_for("about")}}'>About</a></li>
+                </ul>
+            </div> <!-- end navbar-right -->
+        </div> <!-- end container -->
+    </nav>
+
+    {% block content %}{% endblock %} 
+
+    <!-- FOOTER -->
+    <footer>
+        <div class"navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-7">
+                        <h4>About Kendrick</h4>
+
+                        <p>I'm a born and raised Seattle-ite.
+                        I went to school in Shoreline (Shorewood HS), and ended up
+                        with degrees in math and electrical engineering at the University of Washington in June 2015. 
+                        After graduation I've been pursuing my interest in data analytics and visualization.
+                        I've also begun to learn HTML and CSS (enough to build this website)!
+                        Any other projects I'm involved in will eventually make it to this site.
+                        <br><br>
+                        Just a few of my favorite things: math, basketball, hip-hop, reading, D&D, and listening to Norah Jones while cooking.
+                        <br><br>
+                        <a href='{{ url_for("about")}}'>More about me and this site &rarr;</a>
+                    </div> <!-- end column -->
+
+                    <div class="col-xs-5 text-right">
+                        <h4>Contact Kendrick</h4>
+                            <p><a href="mailto:tangkend@uw.edu">tangkend@uw.com</a></p>
+
+                        <ul class="mylinks">
+                            <li><a href="https://github.com/kendricktang"><img src='{{ url_for("static", filename="images/logos/gitcat.png")}}'></a></li>
+                            <li><a href="https:/www.linkedin.com/in/kendrick-tang-9492ba4a"><img src='{{ url_for("static", filename="images/logos/linkedin.png")}}'></a></li>
+                        </ul>
+                    </div> <!-- end column -->
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </div> <!-- end navbar-inverse -->
+    </footer>
+        
+    <!-- COPYRIGHT -->
+    <div class="copyright">
+        <p>&copy; 2015 Kendrick Tang</p>
+    </div> <!-- end copyright -->
+</body>
+</html>

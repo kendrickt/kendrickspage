@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container aboutme">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>What's this site all about?</h1>
+                <p>I've got a lot that I want to share with people in my life 
+                (including <em>potential employers</em>)!
+                While social media is one outlet, there are so many different ways to
+                send and recieve content that it gets a little crazy. While I don't plan
+                on quitting Facebook or Instagram, this website will allow me to highlight
+                projects I'm working on, things I'm interested in, and anything else I
+                want!</p>
+
+                <p>On my <a href='{{ url_for("index") }}'>home page</a>, I'll feature the most current project.
+                Usually, this will be a project that I'm working on, but it could potentially be a something 
+                else (e.g. a movie that's changed my life, or a new musician I can't
+                stop listening to). There's also space for a few more items to share. 
+                On the <a href='{{ url_for("projects") }}'>projects page</a>, I'll have an assortment of
+                projects I've worked on. This will include data analysis/data visualization,
+                writing, photographs, and more!<p>
+            </div>
+        
+            <div class="col-md-6">
+                <h2>More about me!</h2>
+                <p>I'm 23 years old, which makes me the youngest adult in my family.
+                This section will grow as I grow, but for now I'll just list some
+                interesting things about myself:
+
+                <ul>
+                    <li>I've been in zero gravity! I was able
+                to fly in NASA's Weightless Wonder through their Microgravity University
+                Program.</li><li>In high school, I pole vaulted! My personal record was 12' 6".
+                I also long jumped, and my recorded personal record is 12', which is
+                hilariously bad.</li><li>I've spent quite a bit of time travelling 
+                in southeast Asia, and was actually in Nepal a few weeks before the 2015
+                earthquakes.</li></ul></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column-third">
+            <h3></h3>
+            <ul>
+            </ul>
+        </div> <!-- end column-third -->
+
+        <div class="column-third">
+            <h3></h3>
+            <ul>
+            </ul>
+        </div> <!-- end column-third -->
+
+        <div class="column-third">
+            <h3></h3>
+            <ul>
+            </ul>
+        </div> <!-- end column-third -->
+    </div> <!-- end row -->
+</div> <!-- end container-about -->
+{% endblock %}

@@ -1,0 +1,25 @@
+Purpose of website:
+    A place to share Kendrick's work, bio, and contact info.
+
+Site map:
+    Home page
+    Portfolio
+    About
+
+Common elements:
+    Header with logo and menu for site map
+    Footer with contact information and links.
+
+Home page:
+    Banner area with featured project (probably most recent)
+        Title, small description, image, and link.
+
+    Portfolio area
+        Next two most recent projects. two columns. 
+
+Porfolio page:
+    sidebar with list of projects
+    project display area
+
+About:
+    Short bio

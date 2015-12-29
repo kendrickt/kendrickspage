@@ -1,0 +1,162 @@
+/* DEBUGGING */
+* {
+    border: 0px solid red;   
+}
+
+/* BACKGROUND PHOTO */
+body {
+    background: url(../images/bike.jpg) 0 0 no-repeat;
+}
+
+/* TYPOGRAPHY */
+body {
+    color: #2e2e2e;
+    background-color: #dddddd;
+    font: 16px/24px "Helvetica Neue", Arial, sans-serif;
+}
+
+h1,
+h3 {
+    font-family: "Times", serif;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 55px;
+}
+
+h3 {
+    font-size: 32px;
+}
+
+h4 {
+    color: #5c5d60;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+p {
+    margin-bottom: 24px;
+}
+
+a {
+    color: #f46151;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #f46151;
+        text-decoration: underline;
+    }
+
+/* GENERAL LAYOUT */
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    /* background-color: rgba(255, 255, 255, 0.6); */
+    overflow: hidden;
+    padding: 24px;
+}
+
+.end-container {
+    overflow: hidden;
+    width: 1200px;
+    margin: 0 auto;
+    padding: 36px 0;
+}
+
+.row {
+    overflow: hidden;
+}
+
+.column-half {
+    margin: 0 12px 24px 12px;
+    width: 550px;
+    float: left;
+}
+
+/* HEADER */
+header {
+    margin-bottom: 24px;
+}
+
+.logo {
+    float: left;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Cambria", Georgia, serif;
+    color: white;
+    font-size: 35px;
+}
+
+    .logo:hover {
+        text-decoration: none;
+        color: #f46151;
+    }
+
+header nav {
+    float: right;
+}
+
+    header nav ul {
+        list-style-type: none;
+        margin: 0;
+    }
+    
+        header nav ul li {
+            display: inline;
+            margin-left: 24px;
+            margin-right: 0;
+        }
+        
+            header nav ul li a {
+                color: white;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+.header-hr {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 0;
+    height: 3px;
+    margin: 0 48px 48px 48px;
+}
+
+/* FOOTER */
+footer {
+    background-color: #333538;
+    padding: 12px 0;
+    margin-top: 24px;
+}
+    
+    footer p {
+        color: white;
+    }
+
+    footer .column-half:nth-of-type(1) {
+        width: 800px; 
+    }
+
+    footer .column-half:nth-of-type(2) {
+        text-align: right;
+        width: 300px;
+    }
+
+
+.mylinks {
+    list-style-type: none;
+    padding: 0;
+    padding-top: 12px;
+}
+
+    .mylinks li {
+        display: inline;
+        margin-left: 12px;
+    }
+
+/* COPYRIGHT */
+.copyright {
+    padding: 24px 0;
+    text-align: center;
+}
