@@ -1,0 +1,37 @@
+{% extends "projects.html" %}
+
+{% block blogcontent %}
+
+<h1 class="blog-post-title">Home Field Advantage</h1>
+<p class="blog-post-meta">December 10th, 2015</p>
+
+<p>It is the 14th week of the NFL regular season and most fantasy football leagues have now entered their playoffs. As an homage to the Seattle Seahawks, I thought my first post would be about the home field advantage.</p>
+
+<p>In 2011, Bleacherreport lists the Seahawk's Centurylink Field (then Qwest Field), as the most difficult place to play an away game. The next four stadiums and teams, in order, are Soldier Field and the Bears; Metrodome and the Vikings; Invesco at Mile High and the Broncos; and Arrowhead Stadium and the Chiefs. While the author provides statistics like capacity, home record, average Decibel rating, temperature, rainfall, etc., there is no mention of how the rank is determined. My guess is that the main, and possibly only, factor is the home record; the home record is the only statistic that appears in sorted order.</p>
+
+<p>Looking at the at-home-record is one way to evaluate home field advantage, but some teams (like the Patriots), win a lot of their games in general. For a deeper analysis of home field advantage, I explored the difference between playing at home and away.</p>
+
+<h2>At-Home Win-Rating</h2>
+<p>Across the league, is there really a home field advantage? The quick answer is: yes. Looking at all regular season games from 2009 - 2014, there have been a total of 1536 games. There have been 878 home game wins, 655 away game wins, and three ties. Put another way, an average of 56.7% of home games is won each week. Is the weekly win-rating for home games statistically meaningful? This is where the analysis breaks down. No matter how you look at it, the NFL as a whole is 500. There is no standard deviation or variance because every game has a winner and a loser (if the three tied games since 2009 are ignored). As a result, even if there was an average of 50.0001% of home games won each week, this would be statistically significant.</p>
+
+<p>Just because the statistics get a little funky doesn't mean there isn't more to explore. Below is a box plot and histogram of weekly at-home win-ratings with the 500 rating (blue line) and the average at-home win-rating per week (green line). There's clearly a right shift! In fact, over 75% of weeks have more home game wins than away. If you want to look at away win-ratings, just flip the plots below around the blue line.</p>
+
+<!-- PICTURE GOES HERE -->
+
+<h2>Points Points Points</h2>
+<p>Wins and losses mean a lot to an NFL team, but that isn't all there is to American football.
+For another dimension of the game, I looked at points scored per game, points allowed per game (points scored per game for away games), and the difference (the spread).</p>
+
+<p>Let's do some quick visuals. Below are histograms and box plots of the points scored per game (ppg) for all games, away games, and home games. Visually, there is a very small shift to the right in the at-home ppg distribution, which isn't very convincing. Statistically, since there are over a thousand games in the sample population, this is still a significant shift - but this doesn't mean the effect is significant. From the histograms below, and the win-rating plots above, it seems like home teams, on average, score one point more than normal - not much for football - and win an average of 7% more games - about one game out of the regular season.</p>
+
+<!-- PICTURE GOES HERE -->
+
+<p>Now for the point spread (plots below). As expected, there is a marginal shift away from a zero-point spread; the average home game point spread (green line) is just above zero (blue line).</p>
+
+<!-- PICTURE GOES HERE -->
+
+<h3>Conclusion</h3>
+<p>When looking at the NFL as whole, a small home field advantage can be seen in both the win-rating, as well as points scored. My next post will take a second look at Bleacherreport's list of most difficult venues to play at and see whether those teams really do have a better home field advantage.</p>
+
+<p>All of the data was collected with <a href="https://github.com/BurntSushi/nflgame">BurntSushi's nflgame</a> package for python. My source code can be found at <a href="https://github.com/kendricktang/homefieldadvantage">https://github.com/kendricktang/homefieldadvantage</a>.</p>
+{% endblock %}

@@ -1,0 +1,28 @@
+.myblog {
+    margin-top: 36px;
+}
+
+.hr-blog {
+    border-top: 4px solid;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+
+.blog-post-title {
+    color: #f46141;
+    margin-bottom: 0;
+}
+
+.blog-post-meta {
+    margin-bottom: 13px;
+    color: #9d9d9d;
+}
+
+
+.blog-sidebar li {
+    margin-bottom: 12px;
+}
+
+.indented-p {
+    margin-left: 30px;
+}

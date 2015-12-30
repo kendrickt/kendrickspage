@@ -1,27 +1,8 @@
-.container-about {
-    width: 1200px;
-    margin: 0 auto;
-    padding: 48px;
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: justify
+.aboutme h1 {
+    font-size: 35px; 
 }
 
-    .container-about ul {
-        list-style-type: none;
-    }
-
-.column-third {
-    margin: 0 12px 24px 12px;
-    width: 340px;
-    float: left;
+.aboutme p,
+.aboutme li {
+    font-size: 17px;
 }
-
-    .column-third ul {
-            list-style-type: none;
-            margin: 0;
-    }
-    
-        .column-third ul li {
-            margin-bottom: 10px;
-        }
-

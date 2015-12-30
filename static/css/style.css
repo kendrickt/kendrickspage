@@ -1,19 +1,18 @@
 body { 
-    padding-top: 93px;
+    padding-top: 98px;
     padding-bottom: 20px;
 }
 
 /* HEADER */
 .header {
-    height: 93px;
-    margin: 0;
+    height: 98px;
     padding: 0;
     width: 100%;
 }
 
 .navbar-brand {
     font-size: 36px;
-    margin-top: 24px;
+    margin: 24px;
 }
 
 .navbar-brand:hover {
@@ -23,6 +22,11 @@ body {
     .nav li {
         padding-top: 24px;
         margin: 0;
+        margin-right: 24px;
+    }
+
+    .nav .active {
+        color: #f46151 !important;
     }
 
     .nav li a {

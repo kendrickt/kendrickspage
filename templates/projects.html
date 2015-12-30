@@ -1,7 +1,32 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h2>Portfolio</h2>
-    <p>My name is Kendrick. This is my website.
-    There isn't much more to say.</p>
+
+<div class="container myblog">
+
+    <!-- TITLE SECTION -->
+    <div class="blog-header">
+        <h1 class="blog-title">The Projects</h1>
+        <p class="lead blog-description">Find out what Kendrick has been up to.</p>
+        <hr class="hr-blog">
+    </div>
+
+    <div class="row">
+        <!-- THE POST -->
+        <div class="col-sm-9 blog-main blog-post">
+            {% block blogcontent %}{% endblock %}
+        </div> <!-- end blog-post -->
+
+        <!-- THE OTHER POSTS -->
+        <div class="col-sm-3 blog-sidebar">
+            <div class="sidebar-module">
+                <h4>Other Projects</h4>
+                <ol class="list-unstyled">
+                    <li><a href='{{ url_for("specific_projects", projectname="20151217_homefieldadvantage2") }}'>NFL Home Field Advantage (pt 2)</a></li>
+                    <li><a href='{{ url_for("specific_projects", projectname="20151210_homefieldadvantage1") }}'>NFL Home Field Advantage (pt 1)</a></li>
+                </ol>
+            </div> <!-- end sidebar-module -->
+        </div> <!-- end blog-sidebar -->
+    </div> <!-- end row -->
+</div> <!-- end container -->
 {% endblock %}
