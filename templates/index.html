@@ -3,31 +3,41 @@
 {% block content %} 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-    <div class="container">
-    <h1>Hello, world!</h3>
-    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-    </div>
-    </div>
+        <div class="container showcase-post">
+            <h1>Home Field Advantage (pt 2)</h1>
+            <p>Which teams in the NFL are most affected by the <em>home field advantage</em>? 
+            In this post, I explore on a team-by-team basis how at-home performance compares to general performance,
+            where performance is measured by the win-rating, points per game, and points allowed per game. 
+            Spoilers: Seattle has a pretty good home field advantage.</p>
 
-    <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-    <div class="col-md-4">
-    <h2>Heading</h2>
-    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-    <h2>Heading</h2>
-    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-    <h2>Heading</h2>
-    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-    </div>
-    </div> <!-- end row -->
+            <p><a class="btn btn-primary btn-med" href='{{ url_for("specific_projects", projectname="20151217_homefieldadvantage2") }}' role="button">Learn more &raquo;</a></p>
+
+            <hr class="hr-jumbo">
+        </div> <!-- end container -->
+    </div> <!-- end jumbotron -->
+
+    <div class="container next-posts">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Home Field Advantage (pt 1)</h2>
+                <p>The very first post! The effect of the <em>home field advantage</em> is explored across the entire NFL.
+                Spoilers: on average, there is barely an effect. The next post explores the effect of the home field advantage
+                for individual teams.</p>
+                <p><a class="btn btn-default" href='{{ url_for("specific_projects", projectname="20151210_homefieldadvantage1") }}' role="button">View details &raquo;</a></p>
+            </div> <!-- end col-md-4 -->
+
+
+            <div class="col-md-4 no-display">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div> <!-- end col-md-4 -->
+
+            <div class="col-md-4 no-display">
+                <h2>Heading</h2>
+                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div> <!-- end col-md-4 -->
+        </div> <!-- end row -->
     </div> <!-- end container -->
 {% endblock %}

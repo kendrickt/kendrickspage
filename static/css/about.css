@@ -6,3 +6,7 @@
 .aboutme li {
     font-size: 17px;
 }
+
+.aboutme a {
+    color: #f46151;
+} 

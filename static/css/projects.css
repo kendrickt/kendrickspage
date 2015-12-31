@@ -7,6 +7,9 @@
     color: rgba(0, 0, 0, 0.4);
 }
 
+.no-project {
+    text-align: right;
+}
 
 .blog-post-title {
     color: #f46141;

@@ -8,13 +8,14 @@
     <meta name="description" content="Kendrick's website">
     <meta name="author" content="Kendrick Tang">
 
-    <title>Kendrick Tang</title>
+    <title>Fifty Feet of Rope</title>
 
     <!-- Bootstrap core CSS -->
     <link href='{{ url_for('static', filename="bootstrap/css/bootstrap.min.css") }}' rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href='{{ url_for("static", filename="css/style.css")}}' rel="stylesheet">
+    <link href='{{ url_for("static", filename="css/index.css")}}' rel="stylesheet">
     <link href='{{ url_for("static", filename="css/about.css")}}' rel="stylesheet">
     <link href='{{ url_for("static", filename="css/projects.css")}}' rel="stylesheet">
 </head>
@@ -25,13 +26,13 @@
         <nav>
             <ul class="nav nav-pills pull-right">
                 <li><a role="presentation" href='{{ url_for("index")}}'>Home</a></li>
-                <li><a role="presentation" href='{{ url_for("projects")}}'>Projects</a></li>
+                <li><a role="presentation" href='{{ url_for("specific_projects", projectname="no_project") }}'>Projects</a></li>
                 <li><a role="presentation" href='{{ url_for("about")}}'>About</a></li>
             </ul>
         </nav>
 
         <!-- LOGO -->
-        <a class="navbar-brand" href='{{ url_for("index")}}'>Kendrick Tang</a>
+        <a class="navbar-brand" href='{{ url_for("index")}}'>Fifty Feet of Rope</a>
     </div> <!-- end container header clearfix -->
 
     {% block content %}{% endblock %} 

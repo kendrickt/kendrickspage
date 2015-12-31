@@ -1,6 +1,7 @@
 body { 
     padding-top: 98px;
     padding-bottom: 20px;
+    background-color: rgba(81, 228, 244, 0.1)
 }
 
 /* HEADER */
@@ -13,6 +14,7 @@ body {
 .navbar-brand {
     font-size: 36px;
     margin: 24px;
+    font-family: platino, ‘Book Antiqua’, Georgia, Garamond, ‘Times New Roman’, Times, serifTimes, serif
 }
 
 .navbar-brand:hover {

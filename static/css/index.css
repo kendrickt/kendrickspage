@@ -1,0 +1,38 @@
+.jumbotron {
+    background-color: transparent; 
+    padding-bottom: 0;
+}
+
+    .jumbotron .hr-jumbo {
+        border-top: 4px solid;
+        color: rgba(0, 0, 0, 0.4);
+        margin-bottom: 0;
+        margin-top: 68px;
+    }
+
+    .showcase-post h1 {
+        font-size: 40px;
+        color: #f46151;
+    }
+
+    .showcase-post .btn-primary {
+        background-color: #f46151;
+        border-color: #f05141; 
+    }
+
+    .jumbotron .btn-primary:hover {
+        background-color: #e24131;
+    }
+
+.next-posts {
+    margin-top: 68px;
+}
+
+    .next-posts h2 {
+        margin-top: 0;
+        font-size: 23px; 
+    }
+
+.no-display {
+    display: none;
+}
