@@ -1,6 +1,7 @@
-from flask import Flask, render_template
-
-app = Flask(__name__)
+from flask import render_template
+from app import app
+from .forms import TestForm
+from testapp import add
 
 
 @app.route('/')
@@ -23,10 +24,9 @@ def specific_projects(projectname):
     return render_template('projects/%s.html' % projectname)
 
 
-@app.route("/test")
+@app.route("/test", methods=['GET', 'POST'])
 def test():
-    return render_template('test.html')
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    form = TestForm()
+    if form.validate_on_submit():
+        return str(add.add_2_ints(form.int_a.data, form.int_b.data))
+    return render_template('test.html', form=form)
