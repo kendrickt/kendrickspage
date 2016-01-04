@@ -33,3 +33,12 @@
 .blog-image {
     text-align: center;
 }
+
+button.replace-by-dropdown {
+    width: 130px;
+    text-align: left;
+}
+
+.dropdown-label {
+    text-align: right;
+}

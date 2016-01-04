@@ -9,4 +9,133 @@
 I had to learn a few new technologies, but now that that's been sorted out I'm back in business!
 Before I move away from home field advantages, I transfered my local system into a little web application!
 </p>
+
+<div class='container'>
+    <div class='row'>
+        <div class='col-sm-2 dropdown-label'>
+            <h5>Starting year:</h5>
+        </div> <!-- end col-sm-2 -->
+
+        <div class='col-sm-2'>
+            <div class='dropdown'>
+                <button class="btn btn-default dropdown-toggle replace-by-dropdown" type="button" id="start-year-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Pick a year!
+                    <span class="caret"></span>
+                </button>
+                <ul class='dropdown-menu replace-by-dropdown' aria-labelledby='start-year-selector'>
+                    <li>2009</li>
+                    <li>2010</li>
+                    <li>2011</li>
+                    <li>2012</li>
+                    <li>2013</li>
+                    <li>2014</li>
+                    <li>2015</li>
+                </ul>
+            </div> <!-- end dropdown -->
+        </div> <!-- end col-sm-2 -->
+    </div> <!-- end row -->
+
+    <div class='row'>
+        <div class='col-sm-2 dropdown-label'>
+            <h5>Ending year:</h5>
+        </div> <!-- end col-sm-2 -->
+
+        <div class='col-sm-2'>
+            <div class='dropdown'>
+                <button class="btn btn-default dropdown-toggle replace-by-dropdown" type="button" id="end-year-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Pick a year!
+                    <span class="caret"></span>
+                </button>
+                <ul class='dropdown-menu replace-by-dropdown' aria-labelledby='end-year-selector'>
+                    <li>2009</li>
+                    <li>2010</li>
+                    <li>2011</li>
+                    <li>2012</li>
+                    <li>2013</li>
+                    <li>2014</li>
+                    <li>2015</li>
+                </ul>
+            </div> <!-- end dropdown -->
+        </div> <!-- end col-sm-2 -->
+    </div> <!-- end row -->
+
+    <div class='row'>
+        <div class='col-sm-2 dropdown-label'>
+            <h5>x-axis stat:</h5>
+        </div> <!-- end col-sm-2 -->
+
+        <div class='col-sm-2'>
+            <div class='dropdown'>
+                <button class="btn btn-default dropdown-toggle replace-by-dropdown" type="button" id="x-axis-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Pick a stat!
+                    <span class="caret"></span>
+                </button>
+                <ul class='dropdown-menu replace-by-dropdown' aria-labelledby='x-axis-selector'>
+                    <li>ppg</li>
+                    <li>ppgaway</li>
+                    <li>ppgratio</li>
+                    <li>ppgdiff</li>
+                    <li>papg</li>
+                    <li>papgaway</li>
+                    <li>papgratio</li>
+                    <li>papgdiff</li>
+                    <li>spg</li>
+                    <li>spgaway</li>
+                    <li>spgdiff</li>
+                    <li>winrating</li>
+                    <li>winratingaway</li>
+                    <li>winratingratio</li>
+                    <li>winratingdiff</li>
+                </ul>
+            </div> <!-- end dropdown -->
+        </div> <!-- end col-sm-2 -->
+    </div> <!-- end row -->
+
+    <div class='row'>
+        <div class='col-sm-2 dropdown-label'>
+            <h5>y-axis stat:</h5>
+        </div> <!-- end col-sm-2 -->
+
+        <div class='col-sm-2'>
+            <div class='dropdown'>
+                <button class="btn btn-default dropdown-toggle replace-by-dropdown" type="button" id="y-axis-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Pick a stat!
+                    <span class="caret"></span>
+                </button>
+                <ul class='dropdown-menu replace-by-dropdown' aria-labelledby='y-axis-selector'>
+                    <li>ppg</li>
+                    <li>ppgaway</li>
+                    <li>ppgratio</li>
+                    <li>ppgdiff</li>
+                    <li>papg</li>
+                    <li>papgaway</li>
+                    <li>papgratio</li>
+                    <li>papgdiff</li>
+                    <li>spg</li>
+                    <li>spgaway</li>
+                    <li>spgdiff</li>
+                    <li>winrating</li>
+                    <li>winratingaway</li>
+                    <li>winratingratio</li>
+                    <li>winratingdiff</li>
+                </ul>
+            </div> <!-- end dropdown -->
+        </div> <!-- end col-sm-2 -->
+    </div> <!-- end row -->
+</div> <!-- end container -->
+
+
+<div class='container'>
+    <div class='row'>
+    <a class="btn btn-primary btn-med" href="javascript:makeplot_20160103();">Make Plot!</a>
+</div>
+</div> <!-- end container -->
+
+
+<div class='container'>
+    <div class='row'>
+<img id='image-20160103' src='{{ url_for("static", filename="images/20160103_homefieldadvantage3/temp.png") }}' alt="plot goes here">
+</div>
+</div>
+
 {% endblock %}
