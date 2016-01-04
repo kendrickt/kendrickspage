@@ -11,13 +11,17 @@
     <title>Fifty Feet of Rope</title>
 
     <!-- Bootstrap core CSS -->
-    <link href='{{ url_for('static', filename="bootstrap/css/bootstrap.min.css") }}' rel="stylesheet">
+    <link href='{{ url_for("static", filename="bootstrap/css/bootstrap.min.css") }}' rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href='{{ url_for("static", filename="css/style.css")}}' rel="stylesheet">
     <link href='{{ url_for("static", filename="css/index.css")}}' rel="stylesheet">
     <link href='{{ url_for("static", filename="css/about.css")}}' rel="stylesheet">
     <link href='{{ url_for("static", filename="css/projects.css")}}' rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src='{{ url_for("static", filename="js/test.js") }}'></script>
 </head>
 
 <body>
@@ -35,7 +39,7 @@
         <a class="navbar-brand" href='{{ url_for("index")}}'>Fifty Feet of Rope</a>
     </div> <!-- end container header clearfix -->
 
-    {% block content %}{% endblock %} 
+    {% block content %}{% endblock %}
 
     <!-- FOOTER -->
     <footer>
@@ -70,7 +74,7 @@
             </div> <!-- end container -->
         </div> <!-- end navbar-inverse -->
     </footer>
-        
+
     <!-- COPYRIGHT -->
     <div class="copyright">
         <p>&copy; 2015 Kendrick Tang</p>

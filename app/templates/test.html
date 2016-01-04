@@ -1,8 +1,9 @@
 {% extends "layout.html" %}
 
 {% block content %}
+
 <h1>Test!</h1>
-<form action='' method="post" name="addition">
+<form class="test-form" action='' method="post" name="add">
     {{ form.hidden_tag() }}
     <p>
         Please enter the first integer:<br>
@@ -12,6 +13,10 @@
         Please enter the second integer:<br>
         {{ form.int_b() }}<br>
     </p>
-    <p><input type="submit" value="press me"></p>
+
+    <a class='btn btn-primary btn-med' href='javascript:add();'>Click me</a>
 </form>
+
+<p>The sum is: <span id="the-sum"></span><p>
+
 {% endblock %}
