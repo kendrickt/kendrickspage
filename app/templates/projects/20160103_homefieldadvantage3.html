@@ -10,6 +10,18 @@ I had to learn a few new technologies, but now that that's been sorted out I'm b
 Before I move away from home field advantages, I transfered my local system into a little web application!
 </p>
 
+<p>
+Just few quick notes for the user: 
+<ul>
+    <li>PPG = Points Per Game</li>
+    <li>PAPG = Points Allowed Per Game</li>
+    <li>SPG = Spread Per Game</li>
+    <li>When not specified, the stat is the at-home statistic, e.g. PPG means points per game, while at home.</li>
+    <li>The ratio of a stat is the at-home to away ratio.</li>
+    <li>The diff of a stat is the at-home stat minus the away stat.</li>
+</ul>
+</p>
+
 <div class='container'>
     <div class='row'>
         <div class='col-sm-2 dropdown-label'>
@@ -121,16 +133,13 @@ Before I move away from home field advantages, I transfered my local system into
                 </ul>
             </div> <!-- end dropdown -->
         </div> <!-- end col-sm-2 -->
+
+        <div class='col-sm-2'>
+            <a class="btn btn-primary btn-med" id='make-image-20160103' href="javascript:makeplot_20160103();">Make Plot!</a>
+        </div> <!-- end col-sm-2 -->
+
     </div> <!-- end row -->
 </div> <!-- end container -->
-
-
-<div class='container'>
-    <div class='row'>
-    <a class="btn btn-primary btn-med" href="javascript:makeplot_20160103();">Make Plot!</a>
-</div>
-</div> <!-- end container -->
-
 
 <div class='container'>
     <div class='row'>

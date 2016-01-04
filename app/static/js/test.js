@@ -21,6 +21,8 @@ function add() {
 
 
 function makeplot_20160103() {
+    $('#make-image-20160103').blur();
+
     $.post('/makeplot_20160103', {
         startyear: $('#start-year-selector').text(),
         endyear: $('#end-year-selector').text(),
