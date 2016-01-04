@@ -1,4 +1,4 @@
-from flask import render_template, jsonify, request
+from flask import render_template, jsonify, request, redirect, url_for
 from app import app
 from .forms import TestForm
 from testapp import add as add2ints
@@ -16,7 +16,7 @@ def about():
 
 @app.route('/projects')
 def projects():
-    return render_template('projects.html')
+    return redirect(url_for('specific_projects', projectname='no_project'))
 
 
 @app.route('/projects/<projectname>')

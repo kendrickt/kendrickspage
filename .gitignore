@@ -1,5 +1,5 @@
 venv
 *.pyc
-*.ropeproject
-.ropeproject
-*/.ropeproject
+.ropeproject/*
+*/.ropeproject/*
+*~

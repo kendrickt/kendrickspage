@@ -1,3 +1,9 @@
+$(document).ready(function() {
+});
+
+
+
+
 function add() {
     $.post('/add', {
         a: +document.getElementById('int_a').value,

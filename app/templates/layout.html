@@ -29,9 +29,14 @@
     <div class="container header clearfix navbar-fixed-top navbar navbar-inverse">
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li><a role="presentation" href='{{ url_for("index")}}'>Home</a></li>
-                <li><a role="presentation" href='{{ url_for("specific_projects", projectname="no_project") }}'>Projects</a></li>
-                <li><a role="presentation" href='{{ url_for("about")}}'>About</a></li>
+                <li {% if request.path == '/' %}class='active'{% endif %}>
+                <a role="presentation" href='{{ url_for("index")}}'>Home</a></li>
+
+                <li {% if request.path[0:9] == '/projects' %}class='active'{% endif %}>
+                <a role="presentation" href='{{ url_for("specific_projects", projectname="no_project") }}'>Projects</a></li>
+
+                <li {% if request.path == '/about' %}class='active'{% endif %}>
+                <a role="presentation" href='{{ url_for("about")}}'>About</a></li>
             </ul>
         </nav>
 

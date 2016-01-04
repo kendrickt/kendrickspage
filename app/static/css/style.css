@@ -27,8 +27,8 @@ body {
         margin-right: 24px;
     }
 
-    .nav .active {
-        color: #f46151 !important;
+    .nav li.active a {
+        background-color: #444 !important;
     }
 
     .nav li a {
