@@ -1,2 +1,2 @@
-setup: export PYTHONPATH=$PYTHONPATH:$PWD/bin
+setup: source config
 web: gunicorn run:app --log-file=-
