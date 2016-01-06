@@ -12,7 +12,7 @@ def combine_games(filename, years):
 
     for year in years:
         try:
-            f = file('games/games_%s.csv' % year, 'r')
+            f = file('bin/homefieldadvantage/games/games_%s.csv' % year, 'r')
         except IOError:
             print year,
             print 'does not have a file associated with it'

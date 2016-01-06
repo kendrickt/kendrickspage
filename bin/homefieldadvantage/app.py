@@ -17,14 +17,14 @@ def make_stat_array(filename):
     Given a game file, an array of Team objects for all teams in that
     game file is returned.
     """
-    team_dict = comp_teams.get_team_dict('games/games_%s.csv' % filename)
+    team_dict = comp_teams.get_team_dict('bin/homefieldadvantage/games/games_%s.csv' % filename)
     team_stats = [comp_teams.Team(team, team_dict[team]) for team in team_dict]
     return team_stats
 
 
 def get_stats(filename, axis, team_stats):
     """
-    Assumes that games/games_filename.csv contains game data,
+    Assumes that bin/homefieldadvantage/games/games_filename.csv contains game data,
     i.e. that get_games(filename, ....) has been called.
     Outputs stats to data/filename_stat.dat for a stat.
     """
