@@ -4,7 +4,7 @@ import sys
 
 
 def plot_data(years, stat, win_type):
-    data = get_data('data/%s_top_%s.dat' % (years, stat))
+    data = get_data('bin/homefieldadvantage/data/%s_top_%s.dat' % (years, stat))
     plt.figure(1)
     min_x, max_x = sys.maxint, 0
     min_y, max_y = sys.maxint, 0
@@ -38,8 +38,10 @@ def plot_data(years, stat, win_type):
 
 
 def plot_data_comparison(years_x, stat_x, years_y, stat_y, square):
-    data_x = get_data('data/%s_top_%s.dat' % (years_x, stat_x))
-    data_y = get_data('data/%s_top_%s.dat' % (years_y, stat_y))
+    data_x = get_data(
+        'bin/homefieldadvantage/data/%s_top_%s.dat' % (years_x, stat_x))
+    data_y = get_data(
+        'bin/homefieldadvantage/data/%s_top_%s.dat' % (years_y, stat_y))
     plt.figure(1)
     min_x, max_x = sys.maxint, 0
     min_y, max_y = sys.maxint, 0
@@ -81,8 +83,10 @@ def plot_data_comparison(years_x, stat_x, years_y, stat_y, square):
 
 
 def plot_data_comparison_app(filename, startyear, endyear, xaxis, yaxis):
-    data_x = get_data('data/%s_%s.dat' % (filename, xaxis))
-    data_y = get_data('data/%s_%s.dat' % (filename, yaxis))
+    data_x = get_data(
+        'bin/homefieldadvantage/data/%s_%s.dat' % (filename, xaxis))
+    data_y = get_data(
+        'bin/homefieldadvantage/data/%s_%s.dat' % (filename, yaxis))
     plt.figure(1)
     min_x, max_x = sys.maxint, 0
     min_y, max_y = sys.maxint, 0

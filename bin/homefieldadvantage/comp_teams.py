@@ -309,6 +309,7 @@ func_dict = {
     'winratingdiff': examine_winratingdiff
 }
 
+
 if __name__ == '__main__':
     func, years = sys.argv[1], sys.argv[2]
     sys.argv[3]
@@ -318,7 +319,8 @@ if __name__ == '__main__':
         print "Warning: n is not defined. n is defaulted to 10."
         n = 10
 
-    team_dict = get_team_dict('games/games_%s.csv' % years)
+    team_dict = get_team_dict(
+        'bin/homefieldadvatnage/games/games_%s.csv' % years)
     team_stats = [Team(team, team_dict[team]) for team in team_dict]
 
     # Bleacher report lists SEA, CHI, MIN, DEN, and KC as the top 5 home
@@ -328,6 +330,8 @@ if __name__ == '__main__':
         func_dict[func](team_stats, n)
     elif func == 'make':
         for func in func_dict.keys():
-            fs = file('data/%s_top_%s.dat' % (years, func), 'w')
+            fs = file(
+                'bin/homefieldadvantage/data/%s_top_%s.dat' % (years, func),
+                'w')
             func_dict[func](team_stats, n, f=fs)
             fs.close()

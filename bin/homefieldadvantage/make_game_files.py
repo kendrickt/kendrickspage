@@ -1,4 +1,3 @@
-import sys
 import nflgame
 
 
@@ -7,7 +6,8 @@ def combine_games(filename, years):
     Given a list of years, the .csv files associated with those years
     are concatenated into a combined game csv.
     """
-    combined_games = file('games/games_%s.csv' % filename, 'w')
+    combined_games = file(
+        'bin/homefieldadvantage/games/games_%s.csv' % filename, 'w')
     print_header(combined_games)
 
     for year in years:
@@ -38,7 +38,7 @@ def get_games(years):
     each containing game data for the regular season of that year.
     """
     for year in years:
-        f = file('games/games_%s.csv' % year, 'w')
+        f = file('bin/homefieldadvantage/games/games_%s.csv' % year, 'w')
         print_header(f)
 
         games = nflgame.games(int(year))
@@ -58,15 +58,3 @@ def get_games(years):
                 (year, away_team, 0, week, away_score, home_score)
             )
         f.close()
-
-
-if __name__ == "__main__":
-    func = sys.argv[1]
-
-    if func == 'get':
-        get_games(sys.argv[2:])
-    elif func == 'combine':
-        combine_games(sys.argv[2], sys.argv[3:])
-    else:
-        print "invalid function: %s" % func
-        print "valid functions are: ", function_dict.keys()

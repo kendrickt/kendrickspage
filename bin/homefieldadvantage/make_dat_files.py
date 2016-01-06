@@ -77,7 +77,7 @@ def write_home_win_rating(games):
         lambda x: (x.week, x.year),
         get_home_win_rating,
         lambda x: x.ishome,
-        'data/home_win_rating.dat'
+        'bin/homefieldadvantage/data/home_win_rating.dat'
     )
 
 
@@ -91,7 +91,7 @@ def write_home_ppg(games):
         None,
         get_ppg,
         lambda x: x.ishome,
-        'data/home_ppg.dat'
+        'bin/homefieldadvantage/data/home_ppg.dat'
     )
 
 
@@ -105,7 +105,7 @@ def write_away_ppg(games):
         None,
         get_ppg,
         lambda x: not int(x.ishome),
-        'data/away_ppg.dat'
+        'bin/homefieldadvantage/data/away_ppg.dat'
     )
 
 
@@ -119,7 +119,7 @@ def write_total_ppg(games):
         None,
         get_ppg,
         lambda x: True,
-        'data/total_ppg.dat'
+        'bin/homefieldadvantage/data/total_ppg.dat'
     )
 
 
@@ -133,7 +133,7 @@ def write_spread(games):
         None,
         get_spread,
         lambda x: x.ishome,
-        'data/home_spread.dat'
+        'bin/homefieldadvantage/data/home_spread.dat'
     )
 
 

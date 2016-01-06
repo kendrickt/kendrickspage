@@ -30,7 +30,7 @@ def get_stats(filename, axis, team_stats):
     """
 
     # Write the desired stat files.
-    fout = file('data/%s_%s.dat' % (filename, axis), 'w')
+    fout = file('bin/homefieldadvantage/data/%s_%s.dat' % (filename, axis), 'w')
     comp_teams.func_dict[axis](team_stats, 32, f=fout)
 
 
