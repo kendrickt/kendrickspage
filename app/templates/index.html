@@ -4,12 +4,13 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <div class="container showcase-post">
-            <h1>Home Field Advantage (pt 3)</h1>
-            <p>If you read my last post (home field advantage pt 2), I included some plots which compared
-            teams based on their win-rating, points per game, and points allowed per game.
-            Now you can generate your own plots!
 
-            <p><a class="btn btn-primary btn-med" href='{{ url_for("specific_projects", projectname="20160103_homefieldadvantage3") }}' role="button">Learn more &raquo;</a></p>
+            <h1>Angry Doug and the Seattle Receiver Corp</h1>
+            <p>Angry Doug has put up quite phenominal numbers in his past few games. How does he actually compare to the top receivers of 2015?
+            How does he compare to himself since 2012? And how does he compare to Carolina's receivers?
+            Long story short: things are looking pretty good for Angry Doug and Seattle.</p>
+
+            <p><a class="btn btn-primary btn-med" href='{{ url_for("specific_projects", projectname="20160113_WR") }}' role="button">Learn more &raquo;</a></p>
 
             <hr class="hr-jumbo">
         </div> <!-- end container -->
@@ -17,6 +18,16 @@
 
     <div class="container next-posts">
         <div class="row">
+
+            <div class="col-md-4">
+                <h2>Home Field Advantage (pt 3)</h2>
+                <p>If you read my last post (home field advantage pt 2), I included some plots which compared
+                teams based on their win-rating, points per game, and points allowed per game.
+                Now you can generate your own plots!
+
+                <p><a class="btn btn-default" href= '{{ url_for("specific_projects", projectname="20160103_homefieldadvantage3") }}' role="button">View details &raquo;</a></p>
+            </div> <!-- end col-md-4 -->
+
             <div class="col-md-4">
                 <h2>Home Field Advantage (pt 2)</h2>
                 <p>Which teams in the NFL are most affected by the <em>home field advantage</em>?
@@ -36,11 +47,6 @@
                 <p><a class="btn btn-default" href='{{ url_for("specific_projects", projectname="20151210_homefieldadvantage1") }}' role="button">View details &raquo;</a></p>
             </div> <!-- end col-md-4 -->
 
-            <div class="col-md-4 no-display">
-                <h2>Heading</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div> <!-- end col-md-4 -->
         </div> <!-- end row -->
     </div> <!-- end container -->
 {% endblock %}

@@ -1,0 +1,130 @@
+{% extends "projects.html" %}
+
+{% block blogcontent %}
+
+<h1 class="blog-post-title">Angry Doug and the Seattle Receiver Corps</h1>
+<p class="blog-post-meta">January 13rd, 2016</p>
+
+<h2>Seattle beats Minnesota in the Wild-Card</h2>
+<p>To start this post off, I'd like to name my top three favorite  plays from the Seahawks vs Vikings playoff game last week.
+In no particular order they are:
+<ul>
+    <li>Blair Walsh whiffing the 27 yard field goal (especially making a couple of 40+ yard attempts earlier)</li>
+    <li>Russ Wilson dropping to his knees before connecting with Tyler Lockett</li>
+    <li>Doug Baldwin's beyond spectacular one-handed catch</li>
+</ul>
+In case you missed that last one, you can watch it
+<a href='http://bleacherreport.com/articles/2606620-seahawks-wr-doug-baldwin-leaps-for-ridiculous-1-handed-catch-vs-vikings'>here</a>
+</p>
+
+<p>
+Now lots of people will attribute the Seahawk's victory over the Vikings to luck, but I think otherwise.
+Seattle was definitely lucky when Blair Walsh missed his last field goal attempt,
+but it was skill that kept the Viking's offense to zero touchdowns and Adrian Peterson locked down to 45 rushing yards.
+For context, in the 2015 regular season Adrian Peterson averaged over 90 yards per game and accumulated the 2nd most
+fantasy football points. In otherwords, Seattle defense had the Viking's offence on lockdown.
+The Viking's defense, on the other hand, had a very impressive performance.
+Seattle only came out with 10 points, which is the fewest they've scored since week 16 of the 2013 season (40+ games).
+</p>
+
+<p>
+Why didn't Seattle come out with 3+ touchdowns and why did Russell Wilson only have a 63.3 QB rating?
+Honestly, I don't even know what a QB rating is, but I know it was much higher in his last few games.
+I could say weather was a factor (it was below zero degrees fahrenheit for most of the game).
+I could go into how playing away from home effects the Seahawks, but I already did that.
+I could even look into what Tyler Lockett ate before the game and how that effected his performance, but I won't.
+In fact, I won't do anything. The Seahawks had a below average game, for whatever reasons and that's that.
+What I will do is look at how the Seahawk's receiver corp has performed this year, and do some comparisons.
+</p>
+
+
+<h2>Spectacular Completion Percentages</h2>
+If you're interested in how I collected and cleaned the data, you can check out the end of this post.
+If you're interested in seeing how awesome Seattle receivers compare in terms of completion percentages, here's my first set of plots:
+
+<div class='imgset' id='imgset-compperc'>
+    <div class='no-display'>
+        <img class="blog-image img-responsive" src='{{ url_for("static", filename="images/20160113_WR/compperc_2012.png") }}' alt="completion percentage">
+    </div>
+    <div class='no-display'>
+        <img class="blog-image img-responsive" src='{{ url_for("static", filename="images/20160113_WR/compperc_2013.png") }}' alt="completion percentage">
+    </div>
+    <div class='no-display'>
+        <img class="blog-image img-responsive" src='{{ url_for("static", filename="images/20160113_WR/compperc_2014.png") }}' alt="completion percentage">
+    </div>
+    <div>
+        <img class="blog-image img-responsive" src='{{ url_for("static", filename="images/20160113_WR/compperc_2015.png") }}' alt="completion percentage">
+    </div>
+</div> <!-- end imgset-compperc -->
+
+<div class='btn-scroller'>
+    <a class='btn btn-primary btn-med scroller-left' href="javascript:scroll_images('#imgset-compperc', -1);">&larr;back in time</a>
+    <a class='btn btn-primary btn-med scroller-right' href="javascript:scroll_images('#imgset-compperc', 1);">into the future&rarr;</a>
+</div>
+
+<p>
+First, some details about the plots.
+<ul>
+    <li>To be completely explicit: the x-axis is the number of pass attempts per game (attspergame),
+    and the y-axis is the percentage those attempts are completed or completed (compperc).</li>
+    <li>Seahawk receivers get special green dots, and everyone else is grey.</li>
+    <li>For comparison, I've labelled Seahawk receivers, as well as some top receivers (e.g. Julio Jones).</li>
+    <li>The size of each player's dot is determined by the <emph>total</emph> number of touchdowns they had in the regular season.</li>
+    <li>There's a first-order best fit line for the data with respect to pass attempts per game and completion percentages. Touchdowns do not effect this line.</li>
+</ul>
+</p>
+
+<p>
+First, let's talk about 2012-2014. Seattle's receivers don't really stand out in any way. In fact, they're very middle-of-the-plot in terms of the xy-plot,
+and less than impressive in terms of point size. So how did Seattle have back-to-back Super Bowl appearances?
+During that three year span, Seattle had the highest rush percentage in the NFL - around 54% each year - which is huge compared to the 43% median.
+</p>
+
+<p>
+2015 is quite a different picture. Compared to the top receivers, Seattle's top three receivers (Baldwin, Lockett, and Kearse)
+are in the top five in terms of completion percentages. 
+Compared to previous years, Seattle receivers have way more touchdowns than ever before!
+But what about the number of pass attempts? 
+They've shifted a little to the right, but Seattle still doesn't have anyone like Antonio Brown, Larry Fitzgerald, or Calvin Johnson, in terms of attempts.
+Fortunately for Seattle, attempts don't count for any points. It's touchdowns and yards that matter. 
+</p>
+
+<p>
+What's interesting about these plots?
+First off, it seems like completion percentage is not really effected by the number of attempts - just look how flat the best fit line is.
+I thought I'd see some effect like "more passes go to people with higher completion percentages",
+or "the fewer passes someone gets, the more accurate they are because they're only a target when they've got a good chance of catching the ball",
+but that really isn't apparent.
+And how about the Seahawks? Their completion percentages are phenomenal!
+Compared to the top recievers labelled in the plots, Seattle's top three receivers (Baldwin, Lockett, and Kearse) are in the top five in terms of completion percentages.
+Unfortunately, they are also in the bottom three in terms of number of attempts per game.
+
+<h3>Seattle's Rush Offense</h3>
+<p>
+Why does Seattle have such few attempts per game? It's because they run the ball so often.
+In the four year span that I've plotted, Seattle has had the highest percentage of rush plays every year except for 2015,
+and that's because they lost both their star running back and second string running backs to injurys.
+There's a good reason they run the ball so often - they have one of the best QB/RB combinations, in terms of rushing.
+</p>
+
+<p>
+So what happens when Seattle loses their star running back and their ability to run the ball effectively?
+Honestly, I was really worried when Marshawn Lynch got injured, but when I saw Rawls run the ball I got my confidence back.
+Then Rawls got injured and I thought all hope was lost, but oh was I wrong.
+When Seattle's passing ability was tested, they came up with huge numbers in terms of receiving yards, touchdowns, completion percentages, and anything else you can think of.
+</p>
+
+<p>
+How does this relate to my plots? If you look back at previous years, Seattle's receivers don't look too special.
+They blend in with the other small points in the middle of the pack, even though we've been in back-to-back Super Bowls.
+
+</p>
+
+<h2>That other stat I plotted</h2>
+
+
+<h2>Playoff Picture</h2>
+
+
+<h2>Data Stuff</h2>
+{% endblock %}

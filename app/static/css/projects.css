@@ -30,10 +30,6 @@
     margin-left: 30px;
 }
 
-.blog-image {
-    text-align: center;
-}
-
 button.replace-by-dropdown {
     width: 130px;
     text-align: left;
@@ -43,7 +39,32 @@ button.replace-by-dropdown {
     text-align: right;
 }
 
-img#image-20160103 {
-    margin: 24px;
+.blog-image {
+    display: block;
+    margin: 24px auto 24px auto;
     border: 2px solid black;
+    width: 570px;
+    height: auto;
 }
+
+.btn-scroller {
+    margin: 24px auto;
+    text-align: center;
+}
+
+    .btn-scroller .btn-primary {
+        background-color: #f46151;
+        border-color: #f05141; 
+    }
+
+    .btn-scroller .btn-primary:hover {
+        background-color: #e24131;
+    }
+
+    .btn-scroller .scroller-left{
+        margin-right: 36px;
+    }
+
+    .btn-scroller .scroller-right{
+        margin-left: 36px;
+    }

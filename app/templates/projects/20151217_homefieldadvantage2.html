@@ -38,8 +38,8 @@
 
 <p>Do I actually care about Jacksonville, Minnesota, Cleveland, New England, or Green Bay? Not really. I'm more interested in teams who consistently perform well at home, and not just because they always perform well. I'm going to call these Type A teams. There won't be other types, but it'll help me talk about teams with Type A characteristics. Teams like Jacksonville, Minnesota, and Cleveland play a lot better at home than they do away, but that doesn't actually mean they play well at home. New England and Green Bay on the other hand play well no matter where they are. So which teams are Type A? I made a chart to help me identify them:</p>
   
-<div class="blog-image">
-<img src='{{ url_for("static", filename="images/20151217_homefieldadvantage2/winratingratiovswinrating.png") }}' alt="win rating">
+<div>
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20151217_homefieldadvantage2/winratingratiovswinrating.png") }}' alt="win rating">
 </div> <!-- end blog-image -->
 
 <p>Allow me to break this chart up into four groups. Teams towards the bottom left corner don't win at home, but don't do much worse away (except for PHI, DAL, and TB, who do better away). Teams towards the bottom right corner don't win at home, and really don't do well away, either. Teams in the top left play well at home and don't do much worse away, but there aren't too many teams here, if any. The last group is the Type A group - teams towards the top right play well at home, and not as well when they play away.</p>
@@ -74,8 +74,8 @@ And who has the highest at-home to away PPG ratio?
 St. Louis, at the top of the ratio list, comes in at 28th in the PPG list; they don't score very well at away games. I'll get straight to the visualization:
 </p>
 
-<div class="blog-image">
-<img src='{{ url_for("static", filename="images/20151217_homefieldadvantage2/ppgratiovsppg.png") }}' alt="ppg">
+<div>
+<img class="blog-image img-responsive" src='{{ url_for("static", filename="images/20151217_homefieldadvantage2/ppgratiovsppg.png") }}' alt="ppg">
 </div> <!-- end blog-image -->
 
 <p>And the top five teams with respect to PPG and PPG ratio:
@@ -107,8 +107,8 @@ Who stands out here? Tom Brady, Aaron Rodgers, and Drew Brees - three of the big
 </ol>
 I won't bother to post who had the best PAPG ratios and I'll go straight to the vis:</p>
 
-<div class="blog-image">
-<img src='{{ url_for("static", filename="images/20151217_homefieldadvantage2/papgratiovspapg.png") }}' alt="papg">
+<div>
+<img class="blog-image img-responsive" src='{{ url_for("static", filename="images/20151217_homefieldadvantage2/papgratiovspapg.png") }}' alt="papg">
 </div> <!-- end blog-image -->
 
 <p>Of the three plots shown above, this one is by far the most linear. One interpretation: across the NFL, the more your defense improves, the more visible that improvement is at home. Why is that? It could very well be because of the fans and home field advantage. Home field advantage could amplify any improvements made on defense for the home team. Instead of calling it home field advantage, maybe we should call it away field disadvantage (clever, I know).</p>
@@ -129,8 +129,8 @@ I won't bother to post who had the best PAPG ratios and I'll go straight to the 
 
 <p>We already looked at who has the best combined at-home win rating and win rating ratio, but there's one last thing I want to look at before I step away from home field advantage and look at other things: which teams improve the most, with respect to PPG and PAPG, at home? Similar plot, different variables:</p>
 
-<div class="blog-image">
-<img src='{{ url_for("static", filename="images/20151217_homefieldadvantage2/ppgratiovspapgratio.png") }}' alt="papg vs ppg">
+<div>
+<img class="blog-image img-responsive" src='{{ url_for("static", filename="images/20151217_homefieldadvantage2/ppgratiovspapgratio.png") }}' alt="papg vs ppg">
 </div> <!-- end blog-image -->
 
 <p>I'm looking at you Seattle! Without doing that cross country rating thing, it's easy to see that between its offense and defense, the Seattle Seahawks have the most significant improvement at home games.</p>

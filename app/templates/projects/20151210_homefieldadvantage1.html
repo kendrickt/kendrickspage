@@ -16,8 +16,8 @@
 
 <p>Just because the statistics get a little funky doesn't mean there isn't more to explore. Below is a box plot and histogram of weekly at-home win-ratings with the 500 rating (blue line) and the average at-home win-rating per week (green line). There's clearly a right shift! In fact, over 75% of weeks have more home game wins than away. If you want to look at away win-ratings, just flip the plots below around the blue line.</p>
 
-<div class="blog-image">
-<img src='{{ url_for("static", filename="images/20151210_homefieldadvantage/winrating_hist.png") }}' alt="winrating hist">
+<div>
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20151210_homefieldadvantage/winrating_hist.png") }}' alt="winrating hist">
 </div> <!-- end blog-image -->
 
 <h2>Points Points Points</h2>
@@ -26,15 +26,15 @@ For another dimension of the game, I looked at points scored per game, points al
 
 <p>Let's do some quick visuals. Below are histograms and box plots of the points scored per game (ppg) for all games, away games, and home games. Visually, there is a very small shift to the right in the at-home ppg distribution, which isn't very convincing. Statistically, since there are over a thousand games in the sample population, this is still a significant shift - but this doesn't mean the effect is significant. From the histograms below, and the win-rating plots above, it seems like home teams, on average, score one point more than normal - not much for football - and win an average of 7% more games - about one game out of the regular season.</p>
 
-<div class="blog-image">
-<img src='{{ url_for("static", filename="images/20151210_homefieldadvantage/ppg_hist.png") }}' alt="ppg hist">
-<img src='{{ url_for("static", filename="images/20151210_homefieldadvantage/ppg_box.png") }}' alt="ppg box">
+<div>
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20151210_homefieldadvantage/ppg_hist.png") }}' alt="ppg hist">
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20151210_homefieldadvantage/ppg_box.png") }}' alt="ppg box">
 </div> <!-- end blog-image -->
 
 <p>Now for the point spread (plots below). As expected, there is a marginal shift away from a zero-point spread; the average home game point spread (green line) is just above zero (blue line).</p>
 
-<div class="blog-image">
-<img src='{{ url_for("static", filename="images/20151210_homefieldadvantage/spread_hist.png") }}' alt="spread hist">
+<div>
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20151210_homefieldadvantage/spread_hist.png") }}' alt="spread hist">
 </div> <!-- end blog-image -->
 
 <h3>Conclusion</h3>
