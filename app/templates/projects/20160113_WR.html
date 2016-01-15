@@ -166,4 +166,14 @@ There's only one new feature: Carolina receivers get blue dots.
 </div>
 
 <h2>Data Stuff</h2>
+<p>
+Like the other NFL stuff, I got most of the data from <a href="https://github.com/BurntSushi/nflgame">BurntSushi's nflgame</a>,
+and my source code can be found 
+<a href="https://github.com/kendricktang/nfl_receivers">here</a>.
+To get player statistics, I parsed BurntSushi's play-by-play to pick out receiver name, team, yards gained, whether it was a short or deep pass,
+and a few other things. This wasn't a perfect process, so a few numbers are off by some amount. To filter out running backs, I grabbed the top 100+
+rushers from the <a href='http://espn.go.com/nfl/statistics/player/_/stat/rushing/'>NFL</a> and parsed that to generate a list of running backs for each year. Again, this isn't perfect because I didn't end up with
+all of the runningbacks. To account for the low performing running backs that I missed, I only consider receivers with at least 10 attempts and one touchdown.
+Rush ratios were pulled from <a href='http://fftoday.com'>fftoday.com</a>. 
+</p>
 {% endblock %}
