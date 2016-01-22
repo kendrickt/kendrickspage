@@ -17,7 +17,7 @@ my own decision tree in Python. You can check out my
 <a href='https://github.com/kendricktang/titanic'>GitHub</a> for details.
 </p>
 
-<h2>What is a decision tree?</h2>
+<h2>What is a Decision Tree?</h2>
 <p>
 In the lectures and notes that I read, everyone seemed to first discuss how
 to use a decision tree, and then afterwards describe how to build one.
@@ -57,7 +57,7 @@ than categorical. For now, let's stick with the simplest type where everything
 is categorical.
 </p>
 
-<h2>Trees, Death, and the RMS Titanic</h2>
+<h2>Death, and the RMS Titanic</h2>
 <p>
 At this point, you've seen my tautological definition of a decision tree,
 and you've also seen my terrible breakfast example, but how do we build a
@@ -91,7 +91,7 @@ If yes, then they're dead, and that's because most people did die (about 62%).
 Obviously, this is a really bad model. Let's see how to improve on this.
 </p>
 
-<h3>Simplify the data set</h3>
+<h3>Simplifying the data set</h3>
 <p>
 First, we'll only look at categorical variables. In fact, the first tree I
 built used only sex and passenger class information. There are two sexes
@@ -135,7 +135,7 @@ Anyway, from these six plots I can actually build a decent decision tree by hand
 
 <img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160122_decisiontrees1/sexclass_DT.png") }}' alt="sex class decision tree" style="height: 50%; width: 50%">
 
-<h3>How to build a tree (by hand)</h3>
+<h3>Building a tree (by hand)</h3>
 <p>
 If you've read this far (thanks for reading), you've seen some plots as well as my decision tree.
 Now you finally get to see how I created the tree! The first step is to look at the really bad model.
