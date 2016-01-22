@@ -5,12 +5,13 @@
     <div class="jumbotron">
         <div class="container showcase-post">
 
-            <h1>Angry Doug and the Seattle Receiver Corp</h1>
-            <p>Angry Doug has put up quite phenominal numbers in his past few games. How does he actually compare to the top receivers of 2015?
-            How does he compare to himself since 2012? And how does he compare to Carolina's receivers?
-            Long story short: things are looking pretty good for Angry Doug and Seattle.</p>
+            <h1>Trees, Breakfast, and the RMS Titanic</h1>
+            <p>This is the first of a series of blog posts which is document my experience
+            as I learn about decision trees! In this post, I share how I use a decision tree
+            to help me pick my breakfast, and how I use a simple decision tree to predict the
+            surival of passengers on the Titanic.</p>
 
-            <p><a class="btn btn-primary btn-med" href='{{ url_for("specific_projects", projectname="20160113_WR") }}' role="button">Learn more &raquo;</a></p>
+            <p><a class="btn btn-primary btn-med" href='{{ url_for("specific_projects", projectname="20160122_decisiontrees1") }}' role="button">Learn more &raquo;</a></p>
 
             <hr class="hr-jumbo">
         </div> <!-- end container -->
@@ -18,6 +19,15 @@
 
     <div class="container next-posts">
         <div class="row">
+
+            <div class='col-md-4'>
+                <h2>Angry Doug and the Seattle Receiver Corp</h2>
+                <p>Angry Doug has put up quite phenominal numbers in his past few games. How does he actually compare to the top receivers of 2015?
+                How does he compare to himself since 2012? And how does he compare to Carolina's receivers?
+                Long story short: things are looking pretty good for Angry Doug and Seattle.</p>
+
+                <p><a class="btn btn-default" href='{{ url_for("specific_projects", projectname="20160113_WR") }}' role="button">View details&raquo;</a></p>
+            </div> <!-- end col-md-4 -->
 
             <div class="col-md-4">
                 <h2>Home Field Advantage (pt 3)</h2>
@@ -36,15 +46,6 @@
                 Spoilers: Seattle has a pretty good home field advantage.</p>
 
                 <p><a class="btn btn-default" href='{{ url_for("specific_projects", projectname="20151217_homefieldadvantage2") }}' role="button">View details &raquo;</a></p>
-            </div> <!-- end col-md-4 -->
-
-            <div class="col-md-4">
-                <h2>Home Field Advantage (pt 1)</h2>
-                <p>The very first post! The effect of the <em>home field advantage</em> is explored across the entire NFL.
-                Spoilers: on average, there is barely an effect. The next post explores the effect of the home field advantage
-                for individual teams.</p>
-
-                <p><a class="btn btn-default" href='{{ url_for("specific_projects", projectname="20151210_homefieldadvantage1") }}' role="button">View details &raquo;</a></p>
             </div> <!-- end col-md-4 -->
 
         </div> <!-- end row -->

@@ -1,0 +1,212 @@
+{% extends "projects.html" %}
+
+{% block blogcontent %}
+
+<h1 class="blog-post-title">Trees, Breakfast, and the RMS Titanic</h1>
+<p class="blog-post-meta">January 22rd, 2016</p>
+
+<h2>Disclaimer</h2>
+<p>
+I didn't come up with the idea of a decision tree. All of the written
+content will be my own, and anything that isn't will be explicitly labelled.
+If you're interested, I've provided links to the sources that I used to learn
+about decision trees at the bottom of this post. There's also lots of
+great packages in R, Python, and probably a bunch of other languages, too,
+which build decision trees for you. To get the full experience, I implemented
+my own decision tree in Python. You can check out my 
+<a href='https://github.com/kendricktang/titanic'>GitHub</a> for details.
+</p>
+
+<h2>What is a decision tree?</h2>
+<p>
+In the lectures and notes that I read, everyone seemed to first discuss how
+to use a decision tree, and then afterwards describe how to build one.
+I guess I'll stick to that order. Keep in mind, I'm trying to keep things
+simple for my non-technical audience members (do I even have an audience?)
+so if you want the technical stuff, check out the sources in the last section.
+</p>
+
+<p>
+To give a tautological definition, a decision tree is a tree which
+makes decisions. When I say tree, I don't mean the biological kind
+(although if I did, then the Great Deku Tree would be a decision tree).
+The tree I'm referring to is a computer-science-y one.
+</p>
+
+<p>
+For now, I don't want to go into anything too technical so I'll just give
+two examples of decision trees. The first is the game 20 Questions. You
+think of an animal, and the other person asks 20 yes or no questions and
+tries to guess what animal you're thinking of. You can play one version
+<a href='http://www.quotev.com/quiz/1495385/20-Questions-Animals'>here</a>.
+The second example is of my own invention, and involves one of my favorite
+things: breakfast! In this case, the known variables include what day of the
+week it is, whether I have more than 30 minutes or not, whether I have access
+to a car, etc; and the target variable is what I should eat for breakfast.
+</p>
+
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160122_decisiontrees1/breakfast.png") }}' alt="breakfast" style="height: 50%; width: 50%">
+
+<p>
+The breakfast example is (in my opinion) the simplest type of decision tree
+where the known variables and target variable are all categorical.
+Suppose I wanted to predict the cost of a house. Then the predicted value
+is continuous, rather than categorical. Suppose I wanted to use square footage
+as a variable. Then that known variable is continuous, rather
+than categorical. For now, let's stick with the simplest type where everything
+is categorical.
+</p>
+
+<h2>Trees, Death, and the RMS Titanic</h2>
+<p>
+At this point, you've seen my tautological definition of a decision tree,
+and you've also seen my terrible breakfast example, but how do we build a
+decision tree? You could build one heuristically, like I did for the breakfast
+example. Or, you could actually build an effective decision tree by training
+it with data (this is called <strong>Supervised Learning</strong>,
+if you want to look it up). To do this, we first need a data set. Luckily,
+<a href='http://kaggle.com/c/titanic/'>Kaggle</a> has an easily accessible
+data set related to another one of my favorite things: the RMS Titanic.
+</p>
+
+<p>
+The goal of Kaggle's Titanic challenge is to predict a passengers survival
+based on their sex, passenger class, name, age, port of embarkment, etc.
+Kaggle provides a training data set which includes survival data, and
+a testing data set, which does not include survive data. The training data
+is what I'll be using to build my decision tree.
+</p>
+
+<h3>A really bad model</h3>
+<p>
+Suppose the training data only contained survival information and nothing else
+about sex, age, name, etc. Here's what that would look like:
+</p>
+
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160122_decisiontrees1/survival.png") }}' alt="only survival" style="height: 50%; width: 50%;">
+
+<p>
+To use this really bad model, the decision tree would ask one simple question: "was the passenger on the Titanic?". 
+If yes, then they're dead, and that's because most people did die (about 62%).
+Obviously, this is a really bad model. Let's see how to improve on this.
+</p>
+
+<h3>Simplify the data set</h3>
+<p>
+First, we'll only look at categorical variables. In fact, the first tree I
+built used only sex and passenger class information. There are two sexes
+(this was 1912 so cut me some slack), and three passenger classes. Before
+building anything, I made some histograms to see what the decision tree
+should look like. The first set of histograms compare survival between sexes,
+and between passenger classes.
+</p>
+
+<div class='row'>
+    <div class='col-sm-6'>
+        <img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160122_decisiontrees1/sex.png") }}' alt="sex">
+    </div>
+    <div class='col-sm-6'>
+        <img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160122_decisiontrees1/pclass.png") }}' alt="pclass">
+    </div>
+</div> <!-- end row -->
+
+<p>
+From these plots I concluded the following results:
+<ul>
+    <li>Women had better chances of surviving than men</li>
+    <li>Passenger class 1 had better chances of surviving</li>
+    <li>Passenger class 2 had about 50/50 odds of surviving</li>
+    <li>Passenger class 3 did not have great chances of survival</li>
+</ul>
+</p>
+
+<p>
+At this point, I might naively conclude that the males of passenger class 3 must have had terrible odds,
+or that the women of passenger class 1 had great odds. The plots above don't actually support those claims.
+To figure out the survival of each sex within each class, you'll need to do look at one more plot:
+</p>
+
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160122_decisiontrees1/paired.png") }}' alt="paired">
+
+<p>
+This isn't a great example because the naive conclusion turned out to be true... but I swear this isn't always the case!
+Anyway, from these six plots I can actually build a decent decision tree by hand.
+</p>
+
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160122_decisiontrees1/sexclass_DT.png") }}' alt="sex class decision tree" style="height: 50%; width: 50%">
+
+<h3>How to build a tree (by hand)</h3>
+<p>
+If you've read this far (thanks for reading), you've seen some plots as well as my decision tree.
+Now you finally get to see how I created the tree! The first step is to look at the really bad model.
+Without knowing anything about sex or passenger class,
+we know the following information: about 62% of people died.
+If I partition the passengers by their sex, then I know the following:
+<ul>
+    <li>about 83% of men died</li>
+    <li>about 25% of women died</li>
+</ul>
+On the other hand, if I partition the passengers by their passenger class, I know the following:
+<ul>
+    <li>about 36% of class 1 passengers died</li>
+    <li>about 55% of class 2 passengers died</li>
+    <li>about 75% of class 3 passengers died</li>
+</ul>
+There is a way to quantify how much "information" there is for each partition
+(look up <strong>Entropy</strong> if you want to know more about this).
+It turns out if I partition by sex, the information gained is much better
+than if I partition by passenger class. As a result, I will partition first by sex.
+If you look at the top of the decision tree graphic, you'll see that the first
+question asked is about sex.
+</p>
+
+<p>
+At this point, the only variable left is passenger class, so that is the second
+and last question asked. Now why do I predict that someone who is male and class 3
+died? That's because most of the class 3 males from my training set died!
+You can see that from the survival histogram for class 3 males.
+</p>
+
+<h3>Evaluating a tree</h3>
+<p>
+This very simple tree in two ways. First, it is purely categorical (I'll go into the continuous domain in the future).
+Second, there are only two variables used to make the decision (sex, passenger class).
+How effective is this decision tree? To answer this question, I should use
+<strong>cross-validation</strong>. Essentially, you split up your data into
+a training set and a test set, and see how much of your test set you actually got
+right. For the Titanic Challenge, I used Kaggle's test set and got 75.59%!
+</p>
+
+<h3>Improving a tree</h3>
+<p>
+There are two ways to quickly improve this tree. One source of error comes from
+<strong>overfitting</strong>, but it only arises when the tree is too deep.
+The solution to this problem is to use cross-validation to prune off crappy
+parts of the tree. The tree I used doesn't currently have that problem because
+it is very small.
+</p>
+
+<p>
+The other source of error comes from <strong>underfitting</strong>. This
+is the problem my tree currently has. The solution is to simply include
+the other variables into consideration while building the tree. When more
+variables are included, it becomes increasingly difficult to build the tree
+by hand, which is why building decision trees is left to computers.
+</p>
+
+<p>
+There are many other ways to improve decision trees, but the next post
+will address the two issues and solutions I mentioned. 
+</p>
+
+<h2>My sources of knowledge</h2>
+<ul>
+    <li><a href='https://wikipedia.org/wiki/Decision_tree_learning'>Wikipedia - decision tree learning<a></li>
+    <li><a href='https://wikipedia.org/wiki/Information_gain_in_decision_trees'>Wikipedia - information gain<a></li>
+    <li><a href='http://stat.cmu.edu/~cshalizi/350-2006/lecture-10.pfd'>CMU lecture<a></li>
+    <li><a href='http://stat.cmu.edu/~cshalizi/mreg/15/lectures/27/lecture-27.pdf'>CMU lecture (another one)<a></li>
+    <li><a href='http://stat.wisc.edu/~loh/treeprogs/guide/wires11.pdf'>University of Wisconsin-Madison (the other UW) paper<a></li>
+</ul>
+
+
+{% endblock %}
