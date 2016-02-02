@@ -1,0 +1,152 @@
+{% extends "projects.html" %}
+
+{% block blogcontent %}
+
+<h1 class="blog-post-title">Building a Better Tree</h1>
+<p class="blog-post-meta">February 1st, 2016</p>
+
+<p>
+This post will be all about how to improve decision trees.
+To provide a concrete example, I will be starting with the simple
+tree I ended with in my last post, and improving that one.
+If you have no idea what I'm talking about,
+<a href='{{ url_for("specific_projects", projectname="20160122_decisiontrees1") }}'>go back and read it.</a>
+</p>
+
+<p>
+When I say I'm going to "improve a decision tree",
+I'm really saying that I'm going to "improve a decision tree's performance".
+But before I can improve performance, I'll need to be able to measure it.
+This is important; being able to measure performance allows us to measure changes in performance! It is so important that I'm going to say it again!
+</p>
+
+<p>
+It is critical to be able to measure performance.
+It allows us to make changes to a system, and then measure how those changes impact performance.
+Without the ability to measure performance, any real discussion about performance
+becomes filled with ambiguity and hand-waving.
+If you don't believe me, just watch this
+<a href='https://www.socrata.com/video/put-the-data-where-your-mouth-is-using-data-and-evidence-to-create-sustainable-resilient-cities/'>video</a>.
+It's a testimonal about Socrata (a Seattle based company which helps government harness data)
+where the mayor of Jacksonville talks about how data and measuring performance has made for more
+"meaningful" conversations and less "fluff, make-you-feel-good, make-us-feel-good,
+pat-ourselves-on-the-back, ..." he keeps going, but you get the idea.
+</p>
+
+<h2>Measuring Performance</h2>
+<p>
+In modeling, there are two goals that the modeller is trying to achieve
+(there's likely more than two goals, but I'm only going to mention two).
+</p>
+<ol>
+    <li>The model should be able to predict data it has been trained on.</li>
+    <li>The model should be able to predict data that it has not seen yet.</li>
+</ol>
+
+<p>
+To measure how well a model achieves the first goal,
+I'll be <strong>evaluating the residuals</strong>.
+This simply involves going back through the training data,
+predicting the target variable, and measuring the mean squared error (MSE).
+If the MSE is small, then the model is predicting the data that it trained on very well.
+If the MSE is large, then the model is predicting the data that it trained on very poorly.
+</p>
+
+<p>
+To measure how well a model achieves the second goal,
+I'll be using <strong>cross-validation</strong>.
+This involves splitting the available data into a training set and a testing set,
+which allows the model builder to test the model against data that it has not seen yet.
+To be explicit: the model is built on the training set, MSE with respect to the testing set is measured.
+</p>
+
+<h2>The Performance of My First Tree</h2>
+<p>
+For convenience, I've copied the visualization of the tree I ended with last time below.
+The tree uses two categorical variables (sex and passenger class), to predict the
+target variable (survival).
+</p>
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160122_decisiontrees1/sexclass_DT.png") }}' alt="sex class decision tree" style="height: 50%; width: 50%">
+
+<p>
+When I calculated the performance of my trees, I considered using <strong>bootstrap sampling</strong> to create my training and testing sets.
+I did play around with that, but for everything that follows, I simply sample without replacement to create my training and testing sets.
+Each time I sample, I use 600 data points for training, and 290 data points for testing, and I sample 500 times.
+This way I'll be able to show both the average and the standard deviation of error for each tree structure.
+Here are the results of my first tree:
+</p>
+<
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160201_decisiontrees2/error_sex_pclass.png") }}' alt="sex class" style="height: 50%; width: 50%">
+
+h2>Titanic Tree v2.x</h2>
+<p>
+In terms of both residual and cross-validation, my super simple tree is almost 80% accurate! 
+Using Kaggle's secret testing data, I ended up with 75.6% accuracy.
+In a simple attempt to improve this tree, I'll start by adding three additional categorical variables.
+First, I'll add the "Embarked" variable. Then I'll parse the "Name" variable to create a new variable: "Title".
+Lastly, I'll parse the "Ticket" variable to create a new variable: "Ticket Code".
+Below are the results:
+</p>
+
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160201_decisiontrees2/error_sex_pclass_embarked.png") }}' alt="sex class" style="height: 50%; width: 50%">
+
+
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160201_decisiontrees2/error_sex_pclass_embarked_titles.png") }}' alt="sex class" style="height: 50%; width: 50%">
+
+
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160201_decisiontrees2/error_sex_pclass_embarked_titles_ticketcodes.png") }}' alt="sex class" style="height: 50%; width: 50%">
+
+<h2>Reviewing the Results</h2>
+<p>
+Earlier, I said that the two goals of a model were to predict the training data, and to predict new data.
+If a model is not predicting the training data well it is likely that the model is <strong>under-fit</strong>,
+and if the model is not predicting new data well it is likely that the model is <strong>over-fit</strong>.
+Of course this is a huge generalization, but I'm going to roll with it.
+</p>
+
+<p class='indented-p'>
+Quick story: About a year ago, while sitting in on Dr. Pedro Domingos's machine
+learning class at the University of Washington, he said (not in these exact
+words) the following about a stock market predictor: "if you showed me a stock
+market predictor that was 70 or 80 percent accurate, I wouldn't even bother.
+But show me one that was 51 percent accurate and I'd invest immediately." Dr.
+Domingo was referring to the value (more appropriately the lack of value)
+of an over-fit model. The stock market has a lot more noise and is much
+more unpredictable than what I'm trying to predict, so these numbers
+don't really match my situation.
+<p>
+
+<p>
+Under and over fitting are very common problems in model building.
+And as their names suggest, they are conflicting forces.
+This means that as I try to fix under-fitting I risk over-fitting, and vice-versa.
+This problem is so common that there's actually a name for it:
+<a href='https://wikipedia.org/wiki/Bias-variance_tradeoff'>Bias-Variance Tradeoff</a>!
+</p>
+
+<p>
+So was I over-fit or under-fit? Let's first look at Residual Error. As I added
+complexity to the model, I was able to reduce residual error from 21% all the
+way down to 15%. Hooray! This indicates that the model was under-fit, which is
+not surprising since I was only looking at two variables out of many I could be
+using to build my model.
+Now if we look at Cross Validation Error, you'll see that it reduced when I
+added the Embarked and Title variables, but increased to 19.4% when I added the
+Ticket Code variable. Why did it get worse? I was so busy reducing my
+under-fitting problem that I ended up with an over-fitting problem.
+</p>
+
+<h2>A Look Ahead</h2>
+<p>
+So far, I've talked about how I built my first decision tree, how I evaluated
+it, and how I began to fix my under-fitting problem. Now I've got an
+over-fitting problem. Crap. Over-fitting happens when the model is too complex
+and begins modeling noise in the training data as opposed to modeling trends
+and generalizations in the true data. The next post will be better introduce
+over-fitting, and discuss how I work on
+the over-fitting problem, while balancing the under-fitting problem. I think
+after that I'll quickly talk about random trees, and finally compare how my
+implementation of decision trees compares to SciPy and R implementations.
+</p>
+
+{% endblock %}

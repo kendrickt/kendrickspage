@@ -25,26 +25,6 @@ def specific_projects(projectname):
     return render_template('projects/%s.html' % projectname)
 
 
-@app.route('/test', methods=['GET', 'POST'])
-def test():
-    form = TestForm()
-    if form.validate_on_submit():
-        return str(add2ints.add_2_ints(form.int_a.data, form.int_b.data))
-    return render_template('test.html', form=form)
-
-
-@app.route('/add', methods=['POST'])
-def add():
-    return jsonify({
-        'sum': str(
-            add2ints.add_2_ints(
-                int(request.form['a']),
-                int(request.form['b'])
-            )
-        )
-    })
-
-
 @app.route('/makeplot_20160103', methods=['POST'])
 def makeplot_20160103():
     return jsonify({

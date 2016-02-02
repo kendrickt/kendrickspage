@@ -5,13 +5,11 @@
     <div class="jumbotron">
         <div class="container showcase-post">
 
-            <h1>Trees, Breakfast, and the RMS Titanic</h1>
-            <p>This is the first of a series of blog posts which is document my experience
-            as I learn about decision trees! In this post, I share how I use a decision tree
-            to help me pick my breakfast, and how I use a simple decision tree to predict the
-            surival of passengers on the Titanic.</p>
+            <h1>Building a Better Tree</h1>
+            <p>Last time, I tried predicting whether a passenger of the Titanic survived using only their sex and passenger class.
+            This time around, I look at how to evaluate the performance of a tree, and address my under-fitting and over-fitting problems.</p>
 
-            <p><a class="btn btn-primary btn-med" href='{{ url_for("specific_projects", projectname="20160122_decisiontrees1") }}' role="button">Learn more &raquo;</a></p>
+            <p><a class="btn btn-primary btn-med" href='{{ url_for("specific_projects", projectname="20160201_decisiontrees2") }}' role="button">Learn more &raquo;</a></p>
 
             <hr class="hr-jumbo">
         </div> <!-- end container -->
@@ -19,6 +17,15 @@
 
     <div class="container next-posts">
         <div class="row">
+           <div class="col-md-4">
+                <h2>Trees, Breakfast, and the RMS Titanic</h2>
+                <p>This is the first of a series of blog posts which is document my experience
+                as I learn about decision trees! In this post, I share how I use a decision tree
+                to help me pick my breakfast, and how I use a simple decision tree to predict the
+                surival of passengers on the Titanic.</p>
+
+                <p><a class="btn btn-default" href='{{ url_for("specific_projects", projectname="20160122_decisiontrees1") }}' role="button">View details &raquo;</a></p>
+            </div> <!-- end col-md-4 -->
 
             <div class='col-md-4'>
                 <h2>Angry Doug and the Seattle Receiver Corp</h2>
@@ -37,17 +44,6 @@
 
                 <p><a class="btn btn-default" href= '{{ url_for("specific_projects", projectname="20160103_homefieldadvantage3") }}' role="button">View details &raquo;</a></p>
             </div> <!-- end col-md-4 -->
-
-            <div class="col-md-4">
-                <h2>Home Field Advantage (pt 2)</h2>
-                <p>Which teams in the NFL are most affected by the <em>home field advantage</em>?
-                In this post, I explore on a team-by-team basis how at-home performance compares to general performance,
-                where performance is measured by the win-rating, points per game, and points allowed per game.
-                Spoilers: Seattle has a pretty good home field advantage.</p>
-
-                <p><a class="btn btn-default" href='{{ url_for("specific_projects", projectname="20151217_homefieldadvantage2") }}' role="button">View details &raquo;</a></p>
-            </div> <!-- end col-md-4 -->
-
         </div> <!-- end row -->
     </div> <!-- end container -->
 {% endblock %}
