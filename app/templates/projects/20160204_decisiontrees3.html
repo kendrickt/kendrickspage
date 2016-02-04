@@ -1,0 +1,89 @@
+{% extends "projects.html" %}
+
+{% block blogcontent %}
+
+<h1 class="blog-post-title">Continuous Variables, please!</h1>
+<p class="blog-post-meta">February 4th, 2016</p>
+
+<h2>What About Continuous Variables???</h2>
+<p>
+I forgot to include in my first two posts: continuous variables! I'm only going to talk about two things - continuous independent varaibles, and continuous target variables - so hopefully this is going to be shorter than the other posts. So without further ado...
+</p>
+
+<h2>Continuous Independent Variables</h2>
+<p>
+Just as a quick reminder, I'm labelling any variables which are known as independent variables. This might not be the best way to label them, but I'm going to stick with it. In my breakfast example (all the way back in the first decision tree post), the indepedent variables were things like what day of the week it was, and whether I had a car or not. In the ongoing Titanic example, the independent variables I've already discussed are sex, passenger class, title, port of embarkation, and ticket codes - all of these are categorical variables. The continuous independent variables for the Titanic problem are: number of siblings and spouses, number of parents and children, ticket value, ticket fare, and age.
+</p>
+
+<p class='indented-p'>
+If you check the original data set, you'll see that I'm not using the "Cabin" variable. It's a weirdly formatted variable, so I'm not going to use it, for now. I'm also not using the "Name" variable, besides extracting "Title" information. If the model needs more complexity, I may try to incorporate both "Cabin" and "Name", but for now I'll just use the variables I mentioned.
+</p>
+
+<h3>Information Gained From Continuous Independent Variables</h3>
+<p>
+When building a decision tree, at each step the "best" independent variable is used to partition the data, where "best" had to do with the information gained by the partition. It is quite easy to partition a categorical variable - you just partition with respect to the categories! With a continuous independent variable, things get a little more complicated since there are no categories.
+</p>
+
+<p>
+The solution is to convert a continuous variable into a categorical one! For example, we could convert "Age" (a continuous variable), into a cateogrical one which might have categories Infant, Child, Teen, Adult, and Senior. In the breakfast example, instead of using "Time" as a continuous variable, I only have two categories: less than 30 minutes, and more than 30 minutes. Once the continuous variable has been converted into a categorical variable, the information gain is computed in the same way as before.
+</p>
+
+<h3>A Better Conversion Strategy</h3>
+<p>
+In the Age (Titanic problem) and Time (Breakfast problem) examples, I predefined the ranges beforehand and used those ranges as the categories. This will work, but how do I know that these ranges are the most effective way to split the continuous variable? The answer is: I don't!
+</p>
+
+<p>
+The solution is to define the splits during computation time. This will
+require a little more work, but it is worth it! When checking the information
+gained by splitting on a continuous variable, every partition of the form
+{% raw %}{{x:x&lt;A}, {x:x&gt;A}}{% endraw %}
+is checked for all possible A values. This way, we might
+end up with a subset of data which includes ages 18-25 in one place, and 16-28
+in another. By choosing the splits during computation time, the resulting
+categorization of the continuous variable is optimized at each level.
+</p>
+
+<p class='indented-p'>
+This is a detailed description of what the algorithm does for readers who are unfamiliar with the set notation, or just want more details. Suppose V is the continuous variable. Our training data contains N samples of V (in the Titanic problem, I have 891 data points so N = 891). The training data will contain M <strong>distinct</strong> values for V. For each distinct value <strong>A</strong>, the training data is partitioned into two sets: the data with variable V less than A, and the data with variable V greater than A (ties are arbitrarily broken - that means just pick one to be "or equal to"). For each <strong>A</strong>, the data will be split into <strong>two</strong> sets, so I'll call it a <strong>bi</strong>partition. For each bipartition, the information gain is calculated in the normal way, and the <strong>A</strong> which corresponds to the best information gain will be the split that is used <strong>given</strong> that the information gained by splitting on <strong>A</strong> is better than all other categorical variables and other continuous variables.
+</p>
+
+<p>
+At this point, I haven't included any pictures so here's a picture of how we might recursively bipartition a decision tree trained on two continuous independent variables. Some notes about my graphic: yes, it is made it in MS Paint; yes, the data is completely made up and meaningless; and yes, the lines are arbitrarily drawn and are not the result of any decision tree algorithm.
+</p>
+
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160204_decisiontrees3/cont_features.png") }}' alt="continuous features decision tree" style="height: 50%; width: 50%">
+
+<h2>Continuous Target Variables</h2>
+<p>
+"Kendrick, survival on the Titanic is a binary thing! How will you provide an example of predicting a continuous target variable?"
+</p>
+
+<p>
+Wow, reader, that is a great observation and question! If you look carefully at
+any of the data sets on my GitHub, or the data set provided by Kaggle, you'll
+see that the "Age" variable is missing quite a few values. To be able to better
+use "Age" as a predictor, I want to fill in missing values. The predictor has
+become the predicted!
+</p>
+
+<p>
+For categorical target variables, the information at each step is measured in
+terms of <strong>entropy</strong>. For continuous target variables, it is
+measured in terms of <strong>variance</strong>. The more varied the target
+variable is the less certain the predictor will be, and the less varied
+the target variable is the more certain the predictor will be. What value
+does the predictor predict? Simply, the average value of the training set!
+</p>
+
+<h2>Conclusion</h2>
+<p>
+First, I'd like to apologize to my readers for forgetting to talk about
+continuous variables earlier. I'd also like to apologize for postponing my
+discussion of over-fitting! But now that I can include both categorical and
+continuous features into my decision tree, the over-fitting will be much
+worse than before, so hopefully we can see more of a difference when I adjust
+for over-fitting.
+</p>
+
+{% endblock %}
