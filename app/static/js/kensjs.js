@@ -41,7 +41,7 @@ function makeplot_20160103() {
     });
 }
 
-function scroll_images(id, dir) {
+function scroll_images(id, dir, msg) {
     var images = $(id).children();
     var curr;
     var image;
@@ -53,10 +53,10 @@ function scroll_images(id, dir) {
         }
     }
     if (dir == -1 && curr == 0) {
-        alert('I can\'t let you do that, Starfox. No plots for before 2012.');
+        alert(msg);
         return;
     } else if (dir == 1 && curr == 3) {
-        alert('Can\'t go into the future, friend.');
+        alert(msg);
         return;
     } else if (dir == 1) {
         image = images[curr+1];

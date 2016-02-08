@@ -36,7 +36,7 @@ pat-ourselves-on-the-back, ..." he keeps going, but you get the idea.
 <h2>Measuring Performance</h2>
 <p>
 In modeling, there are two goals that the modeller is trying to achieve
-(there's likely more than two goals, but I'm only going to mention two).
+(it is likely that there are more than two goals, but I'm only going to mention two).
 </p>
 <ol>
     <li>The model should be able to predict data it has been trained on.</li>
@@ -75,26 +75,40 @@ Each time I sample, I use 600 data points for training, and 290 data points for 
 This way I'll be able to show both the average and the standard deviation of error for each tree structure.
 Here are the results of my first tree:
 </p>
-<
-<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160201_decisiontrees2/error_sex_pclass.png") }}' alt="sex class" style="height: 50%; width: 50%">
+<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160201_decisiontrees2/error_sex_pclass.png") }}' alt="sex class">
 
-h2>Titanic Tree v2.x</h2>
+<h2>Titanic Tree v2.x</h2>
 <p>
 In terms of both residual and cross-validation, my super simple tree is almost 80% accurate! 
 Using Kaggle's secret testing data, I ended up with 75.6% accuracy.
 In a simple attempt to improve this tree, I'll start by adding three additional categorical variables.
 First, I'll add the "Embarked" variable. Then I'll parse the "Name" variable to create a new variable: "Title".
 Lastly, I'll parse the "Ticket" variable to create a new variable: "Ticket Code".
-Below are the results:
+Below is an interactive scrolly thing which shows the change in cross-validation error and residual error when features are added (or removed):
 </p>
 
-<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160201_decisiontrees2/error_sex_pclass_embarked.png") }}' alt="sex class" style="height: 50%; width: 50%">
+<div class='imgset' id='imgset-treeperformance'>
+    <div>
+        <img class="blog-image img-responsive" src='{{ url_for("static", filename="images/20160201_decisiontrees2/error_sex.png") }}' alt="MSE with sex">
+    </div>
+    <div class='no-display'>
+        <img class="blog-image img-responsive" src='{{ url_for("static", filename="images/20160201_decisiontrees2/error_sex_pclass.png") }}' alt="MSE with sex, pclass">
+    </div>
+    <div class='no-display'>
+        <img class="blog-image img-responsive" src='{{ url_for("static", filename="images/20160201_decisiontrees2/error_sex_pclass_embarked.png") }}' alt="MSE with sex, pclass, embarked">
+    </div>
+    <div class='no-display'>
+        <img class="blog-image img-responsive" src='{{ url_for("static", filename="images/20160201_decisiontrees2/error_sex_pclass_embarked_titles.png") }}' alt="MSE with sex, pclass, embarked, titles">
+    </div>
+    <div class='no-display'>
+        <img class="blog-image img-responsive" src='{{ url_for("static", filename="images/20160201_decisiontrees2/error_sex_pclass_embarked_titles_ticketcodes.png") }}' alt="MSE with sex, pclass, embarked, titles, ticket codes">
+    </div>
+</div> <!-- end imgset-treeperformance -->
 
-
-<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160201_decisiontrees2/error_sex_pclass_embarked_titles.png") }}' alt="sex class" style="height: 50%; width: 50%">
-
-
-<img class='blog-image img-responsive' src='{{ url_for("static", filename="images/20160201_decisiontrees2/error_sex_pclass_embarked_titles_ticketcodes.png") }}' alt="sex class" style="height: 50%; width: 50%">
+<div class='btn-scroller'>
+    <a class='btn btn-primary btn-med scroller-left' href="javascript:scroll_images('#imgset-treeperformance', -1, 'not too complex');">less complex</a>
+    <a class='btn btn-primary btn-med scroller-right' href="javascript:scroll_images('#imgset-treeperformance', 1, 'too complex');">more complex</a>
+</div>
 
 <h2>Reviewing the Results</h2>
 <p>
