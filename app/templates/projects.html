@@ -13,15 +13,14 @@
 
     <div class="row">
         <!-- THE POST -->
-        <div class="col-xs-9 blog-main blog-post">
-            {% block blogcontent %}{% endblock %}
-        </div> <!-- end blog-post -->
+        {% block blogcontent %}{% endblock %}
 
         <!-- THE OTHER POSTS -->
         <div class="col-xs-3 blog-sidebar">
             <div class="sidebar-module">
                 <h4>List o' Projects</h4>
                 <ol class="list-unstyled">
+                    <li><a href='{{ url_for("specific_projects", projectname="20160222_transit") }}'>Taking the Bus in San Francisco</a></li>
                     <li><a href='{{ url_for("specific_projects", projectname="20160204_decisiontrees3") }}'>Continuous Variables, Please!</a></li>
                     <li><a href='{{ url_for("specific_projects", projectname="20160201_decisiontrees2") }}'>Building a Better Tree</a></li>
                     <li><a href='{{ url_for("specific_projects", projectname="20160122_decisiontrees1") }}'>Trees, Breakfast, and the RMS Titanic</a></li>

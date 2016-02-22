@@ -1,0 +1,351 @@
+{% extends "projects.html" %}
+
+{% block blogcontent %}
+
+
+
+<div class="col-xs-9 blog-main blog-post">
+
+<script>
+    var width = 800;
+    var height = 750;
+    var scale = 250000;
+    var sf_center = [ -122.43371886937991, 37.76901315955994 ];
+
+    var projection = d3.geo.mercator()
+        .scale(scale)
+        .center(sf_center)
+        .translate([width/2, height/2]);
+
+
+    var canvas = d3.select('div.blog-main').append('svg')
+        .attr('width', width)
+        .attr('height', height);
+
+        d3.json('{{ url_for("static", filename="js/20160222_transit/sf_hoods.json") }}', function (data) {
+
+            var group = canvas.selectAll("g")
+                .data(data.features)
+                .enter()
+                .append("g");
+
+            var path = d3.geo.path().projection(projection);
+
+            var areas = group.append("path")
+                .attr("d", path)
+                .attr("class", "area")
+                .attr("fill", "#A9A9A9")
+                .attr("stroke", "#000000")
+                .attr("stroke-width", 0.5);
+        });
+
+    d3.json('{{ url_for("static", filename="js/20160222_transit/sf_routes.json") }}', function(data) {
+
+        var projection = d3.geo.mercator()
+            .scale(scale)
+            .center(sf_center)
+            .translate([width/2, height/2]);
+
+        var path = d3.geo.path().projection(projection);
+
+        var group = canvas.selectAll("g")
+            .data(data.features)
+            .enter()
+            .append("g");
+
+        var streets = group.append("path")
+            .attr("d", path)
+            .attr("stroke", "#f46151")
+            .attr("stroke-width", 2)
+            .attr("fill", "none")
+            .attr("fill-opacity", 0)
+            .attr("stroke-opacity", 0.7);
+    });
+
+    var inactive_data = {};
+    var active_data = {};
+    var increment = 10;
+    var timer = 25000;
+    var timer_text = canvas.selectAll('text')
+        .data([timer])
+        .enter()
+            .append('text')
+                .attr('x', width/2)
+                .attr('y', 30)
+                .attr('text-anchor', 'middle')
+                .attr('font-size', '20px')
+                .text(function(d) { return sec2time(d); });
+
+    function sec2time(seconds) {
+        var hours = Math.floor(seconds / 3600);
+        if (hours < 10) {
+            hours = '0' + hours;
+        } else {
+            hours = '' + hours;
+        }
+
+        var remainder = seconds % 3600;
+        var minutes = Math.floor(remainder / 60);
+        if (minutes < 10) {
+            minutes = '0' + minutes;
+        } else {
+            minutes = '' + minutes;
+        }
+
+        remainder = remainder % 60;
+        if (remainder < 10) {
+            remainder = '0' + remainder;
+        } else {
+            remainder = '' + remainder;
+        }
+
+        return '' + hours + ':' + minutes + ':' + remainder;
+    }
+
+    var circles = canvas.selectAll('circle');
+
+    function render_busses() {
+        timer = timer + increment;
+        if (timer > 24 * 60 * 60) {
+            clearInterval(my_interval);
+            return 0;
+        }
+        timer_text = canvas.selectAll('text')
+            .data([timer])
+                .text(function(d) { return sec2time(d); });
+
+        // Shift active data that has been passed by the timer
+        for (key in active_data) {
+            var bus_data = active_data[key].data;
+            if (bus_data.length < 2) {
+                delete active_data[key];
+            } else if (bus_data[1].time < timer) {
+                bus_data.shift();
+            }
+        }
+
+        // Add new data that has been passed by the tiemr
+        for (key in inactive_data) {
+            if (inactive_data[key].start < timer) {
+                active_data[key] = inactive_data[key];
+                delete inactive_data[key];
+            }
+        }
+
+        circles = canvas.selectAll('circle').data(Object.keys(active_data));
+
+        // Do the d3 exit step!
+        circles.exit().remove();
+
+        // Do the transition step!
+        circles.transition()
+            .attr('cx', function(d) {
+                return projection(
+                    [active_data[d].data[0].longitude, active_data[d].data[0].latitude])[0];
+            })
+            .attr('cy', function(d) {
+                return projection(
+                    [active_data[d].data[0].longitude, active_data[d].data[0].latitude])[1];
+            })
+            .attr('r', 10)
+            .attr('fill', "blue")
+            .duration(500);
+
+
+        // Do the d3 enter step!
+        circles.enter()
+            .append('circle')
+            .attr('cx', function(d) {
+                return projection(
+                    [active_data[d].data[0].longitude, active_data[d].data[0].latitude])[0];
+            })
+            .attr('cy', function(d) {
+                return projection(
+                    [active_data[d].data[0].longitude, active_data[d].data[0].latitude])[1];
+            })
+            .attr('r', 10)
+            .attr('fill', "blue");
+    }
+
+    function get_inactive_data(date, list_of_routes) {
+        for (index in list_of_routes) {
+            d3.json('/static/js/20160222_transit/oct' + date  + '/' + list_of_routes[index] + '.json', function(data) {
+                for (key in data) {
+                    inactive_data[key] = data[key];
+                }
+            });
+        }
+    }
+
+    function reset_animation() {
+        get_inactive_data('1', ['01', '05']);
+        active_data = [];
+        timer = 25000;
+        increment = 100;
+        clearInterval(my_interval);
+    }
+
+    function stop_animation() {
+        clearInterval(my_interval);
+    }
+
+    function start_animation() {
+        clearInterval(my_interval);
+        my_interval = setInterval(render_busses, 200);
+    }
+
+    function set_speed(inc) {
+        increment = inc;
+    }
+
+    function check_check_boxes() {
+        var route_arr = [];
+        $('.transit-route').each(function(i, obj) {
+            if (obj.checked) {
+                route_arr.push(obj.id);
+            }
+        });
+
+        var day = '1';
+
+        get_inactive_data(day, route_arr);
+    }
+
+    render_busses();
+    var my_interval = setInterval(render_busses, 200);
+
+</script>
+
+<div class=<transit-options'>
+	<div class="well">
+		<div style="width: 140px;" class="slider slider-horizontal"><div class="slider-track"><div style="left: 0%; width: 50%;" class="slider-selection"></div><div style="left: 50%;" class="slider-handle round"></div><div style="left: 0%;" class="slider-handle round hide"></div></div><div style="top: -40px; left: 23px;" class="tooltip top"><div class="tooltip-arrow"></div><div class="tooltip-inner">Current value: 3</div></div><input style="" class="span2" value="4" id="sl1" type="text"></div>
+	</div>
+
+    <button class="dropdown btn btn-default dropdown-toggle replace-by-dropdown" type="button" id="day-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Pick a day:
+        <span class="caret"></span>
+    </button>
+
+    <ul class='dropdown-menu replace-by-dropdown' aria-labelledby='day-selector'>
+        <li>Oct 1st, 2012</li>
+        <li>Oct 2nd, 2012</li>
+        <li>Oct 3rd, 2012</li>
+        <li>Oct 4th, 2012</li>
+        <li>Oct 5th, 2012</li>
+        <li>Oct 6th, 2012</li>
+        <li>Oct 7th, 2012</li>
+    </ul>
+
+    <button onclick="start_animation()">resume/start</button>
+    <button onclick="reset_animation()">reset</button>
+    <button onclick="stop_animation()">stop</button>
+    <button onclick="check_check_boxes()">load routes</button>
+
+    <div class="row">
+        <div class="col-xs-2">
+            <div>01<input class="transit-route" type="checkbox" id="01"></div>
+            <div>01AX<input class="transit-route" type="checkbox" id="01AX"></div>
+            <div>01BX<input class="transit-route" type="checkbox" id="01BX"></div>
+            <div>02<input class="transit-route" type="checkbox" id="02"></div>
+            <div>03<input class="transit-route" type="checkbox" id="03"></div>
+            <div>05<input class="transit-route" type="checkbox" id="05"></div>
+            <div>06<input class="transit-route" type="checkbox" id="06"></div>
+            <div>08X<input class="transit-route" type="checkbox" id="08X"></div>
+            <div>08AX<input class="transit-route" type="checkbox" id="08AX"></div>
+            <div>09<input class="transit-route" type="checkbox" id="09"></div>
+            <div>09L<input class="transit-route" type="checkbox" id="09L"></div>
+            <div>10<input class="transit-route" type="checkbox" id="10"></div>
+            <div>12<input class="transit-route" type="checkbox" id="12"></div>
+        </div>
+
+        <div class="col-xs-2">
+            <div>14<input class="transit-route" type="checkbox" id="14"></div>
+            <div>14L<input class="transit-route" type="checkbox" id="14L"></div>
+            <div>14X<input class="transit-route" type="checkbox" id="14X"></div>
+            <div>16X<input class="transit-route" type="checkbox" id="16X"></div>
+            <div>17<input class="transit-route" type="checkbox" id="17"></div>
+            <div>18<input class="transit-route" type="checkbox" id="18"></div>
+            <div>19<input class="transit-route" type="checkbox" id="19"></div>
+            <div>21<input class="transit-route" type="checkbox" id="21"></div>
+            <div>22<input class="transit-route" type="checkbox" id="22"></div>
+            <div>23<input class="transit-route" type="checkbox" id="23"></div>
+            <div>24<input class="transit-route" type="checkbox" id="24"></div>
+            <div>27<input class="transit-route" type="checkbox" id="27"></div>
+            <div>28<input class="transit-route" type="checkbox" id="28"></div>
+        </div>
+
+        <div class="col-xs-2">
+            <div>28L<input class="transit-route" type="checkbox" id="28L"></div>
+            <div>29<input class="transit-route" type="checkbox" id="29"></div>
+            <div>30<input class="transit-route" type="checkbox" id="30"></div>
+            <div>30X<input class="transit-route" type="checkbox" id="30X"></div>
+            <div>31<input class="transit-route" type="checkbox" id="31"></div>
+            <div>31AX<input class="transit-route" type="checkbox" id="31AX"></div>
+            <div>31BX<input class="transit-route" type="checkbox" id="31BX"></div>
+            <div>33<input class="transit-route" type="checkbox" id="33"></div>
+            <div>35<input class="transit-route" type="checkbox" id="35"></div>
+            <div>36<input class="transit-route" type="checkbox" id="36"></div>
+            <div>37<input class="transit-route" type="checkbox" id="37"></div>
+            <div>38<input class="transit-route" type="checkbox" id="38"></div>
+            <div>38AX<input class="transit-route" type="checkbox" id="38AX"></div>
+        </div>
+
+        <div class="col-xs-2">
+            <div>38BX<input class="transit-route" type="checkbox" id="38BX"></div>
+            <div>38L<input class="transit-route" type="checkbox" id="38L"></div>
+            <div>39<input class="transit-route" type="checkbox" id="39"></div>
+            <div>41<input class="transit-route" type="checkbox" id="41"></div>
+            <div>43<input class="transit-route" type="checkbox" id="43"></div>
+            <div>44<input class="transit-route" type="checkbox" id="44"></div>
+            <div>45<input class="transit-route" type="checkbox" id="45"></div>
+            <div>47<input class="transit-route" type="checkbox" id="47"></div>
+            <div>48<input class="transit-route" type="checkbox" id="48"></div>
+            <div>49<input class="transit-route" type="checkbox" id="49"></div>
+            <div>52<input class="transit-route" type="checkbox" id="52"></div>
+            <div>54<input class="transit-route" type="checkbox" id="54"></div>
+            <div>56<input class="transit-route" type="checkbox" id="56"></div>
+        </div>
+
+        <div class="col-xs-2">
+            <div>59<input class="transit-route" type="checkbox" id="59"></div>
+            <div>60<input class="transit-route" type="checkbox" id="60"></div>
+            <div>61<input class="transit-route" type="checkbox" id="61"></div>
+            <div>66<input class="transit-route" type="checkbox" id="66"></div>
+            <div>67<input class="transit-route" type="checkbox" id="67"></div>
+            <div>71<input class="transit-route" type="checkbox" id="71"></div>
+            <div>71L<input class="transit-route" type="checkbox" id="71L"></div>
+            <div>76<input class="transit-route" type="checkbox" id="76"></div>
+            <div>81X<input class="transit-route" type="checkbox" id="81X"></div>
+            <div>82X<input class="transit-route" type="checkbox" id="82X"></div>
+            <div>83X<input class="transit-route" type="checkbox" id="83X"></div>
+            <div>88<input class="transit-route" type="checkbox" id="88"></div>
+            <div>90<input class="transit-route" type="checkbox" id="90"></div>
+        </div>
+
+        <div class="col-xs-2">
+            <div>91<input class="transit-route" type="checkbox" id="91"></div>
+            <div>108<input class="transit-route" type="checkbox" id="108"></div>
+            <div>E<input class="transit-route" type="checkbox" id="E"></div>
+            <div>F<input class="transit-route" type="checkbox" id="F"></div>
+            <div>J<input class="transit-route" type="checkbox" id="J"></div>
+            <div>K OWL<input class="transit-route" type="checkbox" id="K OWL"></div>
+            <div>KT<input class="transit-route" type="checkbox" id="KT"></div>
+            <div>L<input class="transit-route" type="checkbox" id="L"></div>
+            <div>L OWL<input class="transit-route" type="checkbox" id="L OWL"></div>
+            <div>M<input class="transit-route" type="checkbox" id="M"></div>
+            <div>M OWL<input class="transit-route" type="checkbox" id="M OWL"></div>
+            <div>N<input class="transit-route" type="checkbox" id="N"></div>
+            <div>N OWL<input class="transit-route" type="checkbox" id="N OWL"></div>
+        </div>
+
+        <div class="col-xs-2">
+            <div>NX<input class="transit-route" type="checkbox" id="NX"></div>
+            <div>P<input class="transit-route" type="checkbox" id="P"></div>
+            <div>T<input class="transit-route" type="checkbox" id="T"></div>
+        </div>
+
+    </div> <!-- end row -->
+
+</div>
+</div> <!-- end blog -->
+{% endblock %}

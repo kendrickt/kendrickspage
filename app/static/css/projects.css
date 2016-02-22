@@ -56,7 +56,7 @@ button.replace-by-dropdown {
 
     .btn-scroller .btn-primary {
         background-color: #f46151;
-        border-color: #f05141; 
+        border-color: #f05141;
     }
 
     .btn-scroller .btn-primary:hover {
@@ -70,3 +70,9 @@ button.replace-by-dropdown {
     .btn-scroller .scroller-right{
         margin-left: 36px;
     }
+
+input.transit {
+    margin-right: 40px;
+    margin-bottom: 4px;
+    float: right;
+}
