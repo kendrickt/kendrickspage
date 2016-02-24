@@ -5,6 +5,72 @@
 
 
 <div class="col-xs-9 blog-main blog-post">
+<h1 class="blog-post-title">Taking the Bus in San Francisco</h1>
+<p class="blog-post-meta">February 23rd, 2016</p>
+
+<p>
+I'm going to try to keep this REALLY short and sweet. If you want to know more
+details about how I made this or anything else, you can check out
+<a href='https://github.com/kendricktang/Urban-Data-Challenge'>this Github project</a>, or message me. I'm only going to give some user
+instructions, and leave it with that.
+</p>
+
+<p>
+First, I apologize for the crappy interface below... 
+Anyway, below is a visualization of public busses in San Francisco,
+where they are, and how late they are, throughout the day.
+<ul>
+    <li>
+        <strong>Date Selection</strong>: 
+        I only have data from Oct 1st, 2012 through Oct 7th, 2012, and you can
+        specify which day you want to see with the "Pick a day" drop menu.
+    </li>
+    <li>
+        <strong>Speed Selection</strong>:
+        You can select the play-speed in the "Select speed" drop menu.
+        The animation currently runs at 1 update per second, but by changing
+        speed you can change how many minutes pass per update. Currently,
+        slow is 1 minute, medium is 2 minutes, fast is 3 minutes, and very
+        fast is a whooping 5 minutes!
+    </li>
+    <li>
+        <strong>Start Time Selection</strong>:
+        You can select what time to start the animation with the
+        "Select start time" drop menu. Pretty straight forward.
+    </li>
+    <li>
+        <strong>Bus Selection</strong>:
+        Using the beautifully spaced and organized (sarcasm) array of
+        check boxes, you can select which busses are visualized.
+    </li>
+    <li>
+        <strong>Button Controls</strong>:
+        OK, I admit, the buttons are really weird.
+        Sorry.
+        <ul>
+            <li>
+                <strong>Resume</strong>: resumes the visualization.
+                If you didn't press "reset", then the visualization should just
+                continue from where it stopped.
+            </li>
+            <li>
+                <strong>Reset</strong>: resets the visualization!
+                This will change the speed and starting time,
+                but not what busses are loaded into the system.
+            </li>
+            <li>
+                <strong>Pause</strong>: pauses the visualization.
+                Nothing tricky here.
+            </li>
+            <li>
+                <strong>Load routes</strong>: loads the routes into the system.
+                To properly load routes, make sure you have the right selections,
+                and that you have a date selected.
+            </li>
+        </ul>
+    </li>
+</ul>
+</p>
 
 <script>
     var width = 800;
@@ -62,7 +128,7 @@
 
     var route_data = [];
     var increment = 0;
-    var duration = 2000;
+    var duration = 1000;
     var timer = 0;
     var timer_text = canvas.selectAll('text')
         .data([timer])
