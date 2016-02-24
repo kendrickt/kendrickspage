@@ -16,12 +16,13 @@ instructions, and leave it with that.
 </p>
 
 <p>
-First, I apologize for the crappy interface below... 
+First, I apologize for the crappy interface below...
 Anyway, below is a visualization of public busses in San Francisco,
-where they are, and how late they are, throughout the day.
+where they are, and how late they are, throughout the day. Red means late,
+white means on time, and green means early.
 <ul>
     <li>
-        <strong>Date Selection</strong>: 
+        <strong>Date Selection</strong>:
         I only have data from Oct 1st, 2012 through Oct 7th, 2012, and you can
         specify which day you want to see with the "Pick a day" drop menu.
     </li>
@@ -92,8 +93,8 @@ where they are, and how late they are, throughout the day.
         .attr('height', height);
 
         d3.json('{{ url_for("static", filename="js/20160222_transit/sf_hoods.json") }}', function (data) {
-
-            var group = canvas.selectAll("g")
+            
+            var group = canvas.selectAll("g.hoods")
                 .data(data.features)
                 .enter()
                 .append("g");
@@ -106,25 +107,30 @@ where they are, and how late they are, throughout the day.
                 .attr("fill", "#A9A9A9")
                 .attr("stroke", "#000000")
                 .attr("stroke-width", 0.5);
+
+            alert("this is first");
+
+
+            d3.json('{{ url_for("static", filename="js/20160222_transit/sf_routes.json") }}', function(data) {
+
+                var path = d3.geo.path().projection(projection);
+
+                var group = canvas.selectAll("g.routes")
+                    .data(data.features)
+                    .enter()
+                    .append("g");
+
+                var streets = group.append("path")
+                    .attr("d", path)
+                    .attr("stroke", "#f46151")
+                    .attr("stroke-width", 2)
+                    .attr("fill", "none")
+                    .attr("fill-opacity", 0)
+                    .attr("stroke-opacity", 0.7);
+
+                alert("this is second");
+            });
         });
-
-    d3.json('{{ url_for("static", filename="js/20160222_transit/sf_routes.json") }}', function(data) {
-
-        var path = d3.geo.path().projection(projection);
-
-        var group = canvas.selectAll("g")
-            .data(data.features)
-            .enter()
-            .append("g");
-
-        var streets = group.append("path")
-            .attr("d", path)
-            .attr("stroke", "#f46151")
-            .attr("stroke-width", 2)
-            .attr("fill", "none")
-            .attr("fill-opacity", 0)
-            .attr("stroke-opacity", 0.7);
-    });
 
     var route_data = [];
     var increment = 0;
