@@ -105,7 +105,7 @@
     function get_x(d) {
         var ind = 1;
         while (ind < d.length) {
-            if (d[ind].time > timer) {
+            if (d[ind].time >= timer) {
                 return projection(
                     [d[ind-1].longitude, d[ind-1].latitude])[0];
             }
@@ -117,7 +117,7 @@
     function get_y(d) {
         var ind = 1;
         while (ind < d.length) {
-            if (d[ind].time > timer) {
+            if (d[ind].time >= timer) {
                 return projection(
                     [d[ind-1].longitude, d[ind-1].latitude])[1];
             }
@@ -128,8 +128,8 @@
 
     function get_size(d) {
         var ind = 1;
-        while (ind < d.length - 2) {
-            if (d[ind].time > timer) {
+        while (ind < d.length) {
+            if (d[ind].time >= timer) {
                 return d[ind-1].size;
             }
             ind = ind + 1;
@@ -139,8 +139,8 @@
 
     function get_color(d) {
         var ind = 1;
-        while (ind < d.length - 2) {
-            if (d[ind].time > timer) {
+        while (ind < d.length) {
+            if (d[ind].time >= timer) {
                 return colorscale(d[ind-1].d_time);
             }
             ind = ind + 1;
